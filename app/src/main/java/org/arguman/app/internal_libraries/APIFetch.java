@@ -26,7 +26,7 @@ public class APIFetch {
 	}
 
 	public APIFetch(String cat, String where) {
-		APIFetch.URL = "http://api.emlaktown.com/2014-08-04/";
+		APIFetch.URL = "http://api.arguman.org/";
 		APIFetch.cat = cat;
 		APIFetch.where = where;
 		APIFetch.URL += cat;
