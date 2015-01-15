@@ -1,4 +1,4 @@
-package org.arguman.app.internal_libraries;
+package org.arguman.app.libraries;
 
 import android.os.AsyncTask;
 
