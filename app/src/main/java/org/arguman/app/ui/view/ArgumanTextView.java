@@ -1,4 +1,4 @@
-package org.arguman.app.ui;
+package org.arguman.app.ui.view;
 
 import android.content.Context;
 import android.util.AttributeSet;
