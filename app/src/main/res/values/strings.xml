@@ -5,8 +5,9 @@
     <string name="hello_world">Hello world!</string>
     <string name="action_settings">Settings</string>
 
-    <string name="main_tabs_recent">Recent</string>
-    <string name="main_tabs_news_feed">News Feed</string>
-    <string name="main_tabs_top">Top</string>
+    <string name="dashboard_tab_recent">Recent</string>
+    <string name="dashboard_tab_news_feed">News Feed</string>
+    <string name="dashboard_tab_top">Top</string>
+    <string name="dashboard_tab_statistics">Statistics</string>
 
 </resources>

@@ -5,8 +5,9 @@
     <string name="hello_world">Hello world!</string>
     <string name="action_settings">Settings</string>
 
-    <string name="main_tabs_recent">Yeniler</string>
-    <string name="main_tabs_news_feed">Haber Kaynağı</string>
-    <string name="main_tabs_top">Seçilmişler</string>
+    <string name="dashboard_tab_recent">Yeniler</string>
+    <string name="dashboard_tab_news_feed">Haber Kaynağı</string>
+    <string name="dashboard_tab_top">Seçilmişler</string>
+    <string name="dashboard_tab_statistics">İstatistikler</string>
 
 </resources>
