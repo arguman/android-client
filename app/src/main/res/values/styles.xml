@@ -9,7 +9,6 @@
         <item name="android:background">@color/actionbar_background</item>
         <item name="android:titleTextStyle">@style/AppTheme.ArgumantActionBar.TitleTextStyle</item>
         <item name="android:icon">@android:color/transparent</item>
-        <item name="android:windowContentOverlay">@null</item>
     </style>
 
     <style name="AppTheme.ArgumantActionBar.TitleTextStyle" parent="@android:style/TextAppearance.Holo.Widget.ActionBar.Title">

@@ -9,7 +9,7 @@
     <org.arguman.app.ui.view.SlidingTabLayout
         android:id="@+id/tab_layout"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content" />
+        android:layout_height="?android:attr/actionBarSize" />
 
     <FrameLayout
         android:layout_width="match_parent"

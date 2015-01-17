@@ -13,6 +13,9 @@ import android.view.View;
 import android.widget.HorizontalScrollView;
 import android.widget.TextView;
 
+import org.arguman.app.R;
+import org.arguman.app.libraries.FontCache;
+
 /**
  * To be used with ViewPager to provide a tab indicator component which give constant feedback as to
  * the user's scroll progress.
@@ -156,7 +159,8 @@ public class SlidingTabLayout extends HorizontalScrollView {
         TextView textView = new TextView(context);
         textView.setGravity(Gravity.CENTER);
         textView.setTextSize(TypedValue.COMPLEX_UNIT_SP, TAB_VIEW_TEXT_SIZE_SP);
-        textView.setTypeface(Typeface.DEFAULT_BOLD);
+        textView.setTypeface(Typeface.create(FontCache.get("fonts/american_typewriter.ttf", context),
+                Typeface.NORMAL));
 
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.HONEYCOMB) {
             // If we're running on Honeycomb or newer, then we can use the Theme's
@@ -169,7 +173,7 @@ public class SlidingTabLayout extends HorizontalScrollView {
 
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.ICE_CREAM_SANDWICH) {
             // If we're running on ICS or newer, enable all-caps to match the Action Bar tab style
-            textView.setAllCaps(true);
+            textView.setAllCaps(false);
         }
 
         int padding = (int) (TAB_VIEW_PADDING_DIPS * getResources().getDisplayMetrics().density);
