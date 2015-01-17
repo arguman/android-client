@@ -13,7 +13,6 @@ import android.view.View;
 import android.widget.HorizontalScrollView;
 import android.widget.TextView;
 
-import org.arguman.app.R;
 import org.arguman.app.library.FontCache;
 
 /**

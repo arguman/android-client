@@ -20,15 +20,10 @@ public class DashboardPagerAdapter extends PagerAdapter {
     private Activity activity;
     private List<String> titleList;
     private ArrayList<ArgumentModel> arguments;
-    private ArgumentModel argument;
 
-    public DashboardPagerAdapter(Activity activity) {
-        arguments = new ArrayList<ArgumentModel>();
-
-        // TODO static data will be changed
-        getDummyData();
-
+    public DashboardPagerAdapter(Activity activity, ArrayList<ArgumentModel> arguments) {
         this.activity = activity;
+        this.arguments = arguments;
         Resources resources = activity.getResources();
         titleList = new ArrayList<>(
                 Arrays.asList(
@@ -36,107 +31,6 @@ public class DashboardPagerAdapter extends PagerAdapter {
                         resources.getString(R.string.dashboard_tab_recent),
                         resources.getString(R.string.dashboard_tab_top),
                         resources.getString(R.string.dashboard_tab_statistics)));
-    }
-
-    private void getDummyData() {
-
-        argument = new ArgumentModel();
-
-        argument = new ArgumentModel();
-        argument.setTitle("Çağdaşlık söylemi sosyal darwinistliktir.");
-        argument.setTimestamp(20151701035533l);
-        arguments.add(argument);
-
-        argument = new ArgumentModel();
-        argument.setTitle("Kedilerin nankör olduğu büyük bir yalandır");
-        argument.setTimestamp(20151701035533l);
-        arguments.add(argument);
-
-        argument = new ArgumentModel();
-        argument.setTitle("Sosyalizmin önündeki en büyük engel işçi sınıfıdır");
-        argument.setTimestamp(20151701035533l);
-        arguments.add(argument);
-
-        argument = new ArgumentModel();
-        argument.setTitle("insanlar urettikleri kadar degerlidir.");
-        argument.setTimestamp(20151701035533l);
-        arguments.add(argument);
-
-        argument = new ArgumentModel();
-        argument.setTitle("İletişim süreçlerinde başarılı olmak isteyen markalar için sosyal medya kullanımı artık bir zorunluluktur.");
-        argument.setTimestamp(20151701035533l);
-        arguments.add(argument);
-
-        argument = new ArgumentModel();
-        argument.setTitle("Bir gün herkes Google Glass kullanacak ve bu bir ihtiyaç halini alacak.");
-        argument.setTimestamp(20151701035533l);
-        arguments.add(argument);
-
-        argument = new ArgumentModel();
-        argument.setTitle("Para kazanmak amaç ise hırsızlık bir meslektir");
-        argument.setTimestamp(20151701035533l);
-        arguments.add(argument);
-
-        argument = new ArgumentModel();
-        argument.setTitle("Giyilebilir teknolojiler çağın gerisindedir");
-        argument.setTimestamp(20151701035533l);
-        arguments.add(argument);
-
-        argument = new ArgumentModel();
-        argument.setTitle("Sosyal Devlet Halkı Tembelleştirir");
-        argument.setTimestamp(20151701035533l);
-        arguments.add(argument);
-
-        argument = new ArgumentModel();
-        argument.setTitle("Hıçkırık tutunca ne yapsan nafile,geçmiyor.");
-        argument.setTimestamp(20151701035533l);
-        arguments.add(argument);
-
-        argument = new ArgumentModel();
-        argument.setTitle("İslam filozofları gerçek manada felsefe yapamamaktadır");
-        argument.setTimestamp(20151701035533l);
-        arguments.add(argument);
-
-        argument = new ArgumentModel();
-        argument.setTitle("Tesadüf diye bir şey yoktur.");
-        argument.setTimestamp(20151701035533l);
-        arguments.add(argument);
-
-        argument = new ArgumentModel();
-        argument.setTitle("Oksijenle temas eden herşey bozulmaya ve çürümeye mahkumdur");
-        argument.setTimestamp(20151701035533l);
-        arguments.add(argument);
-
-        argument = new ArgumentModel();
-        argument.setTitle("Dropshipping bir aldatmacadır.");
-        argument.setTimestamp(20151701035533l);
-        arguments.add(argument);
-
-        argument = new ArgumentModel();
-        argument.setTitle("Content Marketing gelecekte en önemli pazarlama süreci olacaktır.");
-        argument.setTimestamp(20151701035533l);
-        arguments.add(argument);
-
-        argument = new ArgumentModel();
-        argument.setTitle("İstanbul dünyanın en güzel şehridir.");
-        argument.setTimestamp(20151701035533l);
-        arguments.add(argument);
-
-        argument = new ArgumentModel();
-        argument.setTitle("Üniversite okumak pişmanlıktır.");
-        argument.setTimestamp(20151701035533l);
-        arguments.add(argument);
-
-        argument = new ArgumentModel();
-        argument.setTitle("Hamal olmaya gerek yok");
-        argument.setTimestamp(20151701035533l);
-        arguments.add(argument);
-
-        argument = new ArgumentModel();
-        argument.setTitle("Arap Baharı henüz başarıya ulaşmadığı halde ciddi bir değişim dinamiği ortaya çıkarmıştır.");
-        argument.setTimestamp(20151701035533l);
-        arguments.add(argument);
-
     }
 
     @Override
