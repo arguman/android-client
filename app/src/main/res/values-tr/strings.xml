@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
 
-    <string name="app_name">Argüman</string>
+    <string name="app_name">argüman</string>
     <string name="hello_world">Hello world!</string>
     <string name="action_settings">Settings</string>
 
@@ -10,4 +10,13 @@
     <string name="dashboard_tab_top">Seçilmişler</string>
     <string name="dashboard_tab_statistics">İstatistikler</string>
 
+    <string name="fab_argument">Argüman Ekle</string>
+    <string name="fab_profile">Profil</string>
+    <string name="fab_about">Hakkında</string>
+    <string name="fab_feedback">Geri Bildirim</string>
+    <string name="fab_login">Giriş Yap</string>
+    <string name="fab_sign_up">Kayıt Ol</string>
+
+    <string name="action_search">Ara</string>
+    <string name="action_notifications">Bildirimler</string>
 </resources>
