@@ -19,7 +19,7 @@ public class UserController {
     public static UserController getInstance(Context context) {
         if (userController == null) {
             userController = new UserController(context);
-            ObjectCache objectCache = ObjectCache.getInstance(context, context.MODE_PRIVATE);
+            ObjectCache objectCache = ObjectCache.getInstance(context);
             userController.user = objectCache.getObject(UserModel.KEY, UserModel.class);
             if (userController.user == null) {
                 userController.loginState = false;
