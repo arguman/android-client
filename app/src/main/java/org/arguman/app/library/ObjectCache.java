@@ -1,5 +1,6 @@
 package org.arguman.app.library;
 
+import android.app.Activity;
 import android.content.Context;
 import android.content.SharedPreferences;
 import android.util.Log;
@@ -17,17 +18,17 @@ public class ObjectCache {
     private static Gson GSON = new Gson();
     private static final String LOG_TAG = "ObjectCache";
     private static final String PREFERENCES_NAME = "org.arguman.app";
+    private static final int    PREFERENCES_MODE = Activity.MODE_PRIVATE;
 
-    private ObjectCache(Context context, int mode) {
+    private ObjectCache(Context context) {
         this.context = context;
-        preferences = context.getSharedPreferences(PREFERENCES_NAME, mode);
+        preferences = context.getSharedPreferences(PREFERENCES_NAME, PREFERENCES_MODE);
         editor = preferences.edit();
     }
 
-    public static ObjectCache getInstance(Context context, int mode) {
-        if (objectCache == null) {
-            objectCache = new ObjectCache(context, mode);
-        }
+    public static ObjectCache getInstance(Context context) {
+        if (objectCache == null)
+            objectCache = new ObjectCache(context);
         return objectCache;
     }
 

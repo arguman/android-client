@@ -73,13 +73,13 @@ public class UserModel {
     }
 
     public void save(Context context) {
-        ObjectCache objectCache = ObjectCache.getInstance(context, context.MODE_PRIVATE);
+        ObjectCache objectCache = ObjectCache.getInstance(context);
         objectCache.putObject(KEY, this);
         objectCache.commit();
     }
 
     public void remove(Context context) {
-        ObjectCache objectCache = ObjectCache.getInstance(context, context.MODE_PRIVATE);
+        ObjectCache objectCache = ObjectCache.getInstance(context);
         objectCache.removeObject(KEY);
         objectCache.commit();
     }
