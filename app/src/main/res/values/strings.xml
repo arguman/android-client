@@ -22,5 +22,20 @@
 
     <string name="action_search">Search</string>
     <string name="action_notifications">Notifications</string>
+    <string name="timestamp_second">second</string>
+    <string name="timestamp_minute">minute</string>
+    <string name="timestamp_hour">hour</string>
+    <string name="timestamp_day">day</string>
+    <string name="timestamp_week">week</string>
+    <string name="timestamp_month">month</string>
+    <string name="timestamp_year">year</string>
+    <string name="timestamp_seconds">seconds</string>
+    <string name="timestamp_minutes">minutes</string>
+    <string name="timestamp_hours">hours</string>
+    <string name="timestamp_days">days</string>
+    <string name="timestamp_weeks">weeks</string>
+    <string name="timestamp_months">months</string>
+    <string name="timestamp_years">years</string>
+    <string name="timestamp_ago">ago</string>
 
 </resources>
