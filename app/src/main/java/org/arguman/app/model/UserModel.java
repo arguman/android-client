@@ -1,18 +1,20 @@
 package org.arguman.app.model;
 
+import android.content.Context;
+
+import org.arguman.app.library.ObjectCache;
+
 import java.util.ArrayList;
 
 public class UserModel {
 
-    private int                  id;
-    private String               username
-                                ,email
-                                ,password
-                                ,avatar;
-    private ArrayList<UserModel> followingList
-                                ,followerList;
+    private int id;
+    private String username, email, password, avatar;
+    private ArrayList<UserModel> followingList, followerList;
+    public static final String KEY = "user";
 
-    public UserModel() {}
+    public UserModel() {
+    }
 
     public int getId() {
         return id;
@@ -69,4 +71,17 @@ public class UserModel {
     public void setFollowerList(ArrayList<UserModel> followerList) {
         this.followerList = followerList;
     }
+
+    public void save(Context context) {
+        ObjectCache objectCache = ObjectCache.getInstance(context, context.MODE_PRIVATE);
+        objectCache.putObject(KEY, this);
+        objectCache.commit();
+    }
+
+    public void remove(Context context) {
+        ObjectCache objectCache = ObjectCache.getInstance(context, context.MODE_PRIVATE);
+        objectCache.removeObject(KEY);
+        objectCache.commit();
+    }
+
 }
