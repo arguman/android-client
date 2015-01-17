@@ -11,7 +11,7 @@ import android.widget.TextView;
 
 import org.arguman.app.At;
 import org.arguman.app.R;
-import org.arguman.app.libraries.FontCache;
+import org.arguman.app.library.FontCache;
 import org.arguman.app.ui.adapter.DashboardPagerAdapter;
 import org.arguman.app.ui.view.SlidingTabLayout;
 

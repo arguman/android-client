@@ -14,7 +14,7 @@ import android.widget.HorizontalScrollView;
 import android.widget.TextView;
 
 import org.arguman.app.R;
-import org.arguman.app.libraries.FontCache;
+import org.arguman.app.library.FontCache;
 
 /**
  * To be used with ViewPager to provide a tab indicator component which give constant feedback as to
