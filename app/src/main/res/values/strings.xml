@@ -11,6 +11,7 @@
     <string name="dashboard_tab_statistics">Statistics</string>
     <string name="loading">Loading</string>
     <string name="last_sender">last sender</string>
+    <string name="search">Search</string>
 
     <string name="fab_argument">Add an Argument</string>
     <string name="fab_profile">Profile</string>
