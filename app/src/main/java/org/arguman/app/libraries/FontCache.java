@@ -9,7 +9,7 @@ public class FontCache {
 
     private static Hashtable<String, Typeface> fontCache = new Hashtable<String, Typeface>();
 
-    public Typeface get(String name, Context context) {
+    public static Typeface get(String name, Context context) {
         Typeface mTypeface = fontCache.get(name);
         if (mTypeface == null) {
             try {

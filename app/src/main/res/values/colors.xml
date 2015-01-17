@@ -1,0 +1,8 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <color name="fab">#64FFDA</color>
+    <color name="fab_pressed">#1DE9B6</color>
+    <color name="fab_plus">#009688</color>
+    <color name="actionbar_background">#FFF8B2</color>
+    <color name="actionbar_title">#030302</color>
+</resources>
