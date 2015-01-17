@@ -7,18 +7,19 @@ import android.view.ViewGroup;
 import android.widget.ArrayAdapter;
 
 import org.arguman.app.R;
-import org.arguman.app.model.ItemViewModel;
+import org.arguman.app.model.ArgumentModel;
+import org.arguman.app.model.ContentionModel;
 import org.arguman.app.ui.view.ArgumanTextView;
 
 import java.util.ArrayList;
 
-public class ListItemAdapter extends ArrayAdapter<ItemViewModel> {
+public class ListItemAdapter extends ArrayAdapter<ArgumentModel> {
 
     private Context                  context;
     private int                      resource;
-    private ArrayList<ItemViewModel> items;
+    private ArrayList<ArgumentModel> items;
 
-    public ListItemAdapter(Context context, int resource, ArrayList<ItemViewModel> items) {
+    public ListItemAdapter(Context context, int resource, ArrayList<ArgumentModel> items) {
         super(context, resource, items);
         this.context  = context;
         this.resource = resource;
@@ -39,11 +40,14 @@ public class ListItemAdapter extends ArrayAdapter<ItemViewModel> {
         ArgumanTextView lastSender = (ArgumanTextView) view.findViewById(R.id.last_sender);
         ArgumanTextView time = (ArgumanTextView) view.findViewById(R.id.time);
 
+        // TODO: following line will be removed (temporary)
+        items.get(position).setContentionList(new ArrayList<ContentionModel>());
+
         because.setText(String.valueOf(items.get(position).getBecause()));
         but.setText(String.valueOf(items.get(position).getBut()));
         however.setText(String.valueOf(items.get(position).getHowever()));
         title.setText(items.get(position).getTitle());
-        lastSender.setText(context.getString(R.string.last_sender) + ": " + items.get(position).getLast_sender());
+        lastSender.setText(context.getString(R.string.last_sender) + ": atkafasi");
         time.setText(String.valueOf(items.get(position).getTimestamp()));
 
         return view;
