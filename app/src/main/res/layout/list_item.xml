@@ -1,0 +1,111 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="fill_parent">
+
+    <View
+        android:id="@+id/left_line"
+        android:layout_width="3dp"
+        android:layout_height="match_parent"
+        android:background="@color/gray_background"
+        android:layout_centerVertical="true"
+        android:layout_marginLeft="28dp"/>
+
+    <LinearLayout
+        android:id="@+id/left_panel"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_centerVertical="true"
+        android:gravity="center"
+        android:layout_marginTop="8dp"
+        android:layout_marginBottom="7dp"
+        android:paddingLeft="@dimen/list_item_parent_padding"
+        android:paddingRight="10dp"
+        android:orientation="vertical">
+
+        <org.arguman.app.ui.view.ArgumanTextView
+            android:id="@+id/because"
+            android:layout_width="30dp"
+            android:layout_height="30dp"
+            android:background="@drawable/circle_green"
+            android:textColor="#fff"
+            android:textSize="18sp"
+            android:textStyle="bold"
+            android:gravity="center"
+            android:text="0"
+            android:padding="3dp"/>
+
+        <org.arguman.app.ui.view.ArgumanTextView
+            android:id="@+id/but"
+            android:layout_width="30dp"
+            android:layout_height="30dp"
+            android:background="@drawable/circle_red"
+            android:textColor="#fff"
+            android:textSize="18sp"
+            android:textStyle="bold"
+            android:gravity="center"
+            android:text="0"
+            android:padding="3dp"/>
+
+        <org.arguman.app.ui.view.ArgumanTextView
+            android:id="@+id/however"
+            android:layout_width="30dp"
+            android:layout_height="30dp"
+            android:background="@drawable/circle_yellow"
+            android:textColor="#fff"
+            android:textSize="18sp"
+            android:textStyle="bold"
+            android:gravity="center"
+            android:text="0"
+            android:padding="3dp"/>
+
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:padding="@dimen/list_item_parent_padding"
+        android:background="@color/gray_background"
+        android:layout_toRightOf="@+id/left_panel"
+        android:layout_marginRight="@dimen/list_item_parent_padding"
+        android:layout_marginTop="8dp"
+        android:layout_marginBottom="7dp"
+        android:layout_centerVertical="true"
+        android:orientation="vertical">
+
+        <org.arguman.app.ui.view.ArgumanTextView
+            android:id="@+id/title"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textSize="20sp"
+            android:textColor="#000"
+            android:text="@string/loading"/>
+
+        <View
+            android:id="@+id/line"
+            android:layout_width="match_parent"
+            android:layout_height="1dp"
+            android:background="#000"
+            android:layout_marginTop="7dp"
+            android:layout_marginBottom="7dp"/>
+
+        <org.arguman.app.ui.view.ArgumanTextView
+            android:id="@+id/last_sender"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textSize="14sp"
+            android:textColor="#8f8f8f"
+            android:text="@string/loading"/>
+
+        <org.arguman.app.ui.view.ArgumanTextView
+            android:id="@+id/time"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textSize="14sp"
+            android:textColor="#6f6f6f"
+            android:text="@string/loading"/>
+
+    </LinearLayout>
+
+</RelativeLayout>

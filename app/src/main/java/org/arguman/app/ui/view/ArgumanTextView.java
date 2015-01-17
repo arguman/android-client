@@ -4,7 +4,7 @@ import android.content.Context;
 import android.util.AttributeSet;
 import android.widget.TextView;
 
-import org.arguman.app.libraries.FontCache;
+import org.arguman.app.library.FontCache;
 
 public class ArgumanTextView extends TextView {
 

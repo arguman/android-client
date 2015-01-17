@@ -9,5 +9,7 @@
     <string name="dashboard_tab_news_feed">News Feed</string>
     <string name="dashboard_tab_top">Top</string>
     <string name="dashboard_tab_statistics">Statistics</string>
+    <string name="loading">Loading</string>
+    <string name="last_sender">last sender</string>
 
 </resources>
