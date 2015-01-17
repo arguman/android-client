@@ -22,8 +22,8 @@ public class At extends Application {
     }
 
     private void initSingletons() {
-        ObjectCache.getInstance(getApplicationContext(), this.MODE_PRIVATE);
-        UserController.getInstance(getApplicationContext());
+        ObjectCache.getInstance(getApplicationContext());
+        UserController.getInstance(getApplicationContext()).initializeSession();
     }
 
     @Override

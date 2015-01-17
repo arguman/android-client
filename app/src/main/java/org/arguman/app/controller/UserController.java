@@ -19,15 +19,18 @@ public class UserController {
     public static UserController getInstance(Context context) {
         if (userController == null) {
             userController = new UserController(context);
-            ObjectCache objectCache = ObjectCache.getInstance(context, context.MODE_PRIVATE);
-            userController.user = objectCache.getObject(UserModel.KEY, UserModel.class);
-            if (userController.user == null) {
-                userController.loginState = false;
-            } else {
-                userController.loginState = true;
-            }
         }
         return userController;
+    }
+
+    public void initializeSession() {
+        ObjectCache objectCache = ObjectCache.getInstance(context);
+        userController.user = objectCache.getObject(UserModel.KEY, UserModel.class);
+        if (userController.user == null) {
+            userController.loginState = false;
+        } else {
+            userController.loginState = true;
+        }
     }
 
     public UserModel getUser() {
