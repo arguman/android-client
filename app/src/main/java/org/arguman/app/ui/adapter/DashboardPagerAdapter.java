@@ -159,11 +159,9 @@ public class DashboardPagerAdapter extends PagerAdapter {
         View view = activity.getLayoutInflater().inflate(R.layout.pager_item, container, false);
         container.addView(view);
 
-        if (position == 0) {
-            ListItemAdapter adapter = new ListItemAdapter(activity, R.layout.list_item, arguments);
-            ListView listView = (ListView) view.findViewById(R.id.pager_list_view);
-            listView.setAdapter(adapter);
-        }
+        ListItemAdapter adapter = new ListItemAdapter(activity, R.layout.list_item, arguments);
+        ListView listView = (ListView) view.findViewById(R.id.pager_list_view);
+        listView.setAdapter(adapter);
 
         return view;
     }
