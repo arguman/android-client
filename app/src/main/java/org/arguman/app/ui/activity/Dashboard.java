@@ -271,11 +271,4 @@ public class Dashboard extends Activity {
         floatingActionButton.setStrokeVisible(false);
     }
 
-    public Drawable colorOverlay(Resources resources, int drawableId, int colorId) {
-        Drawable drawable = resources.getDrawable(drawableId);
-        drawable.mutate();
-        drawable.setColorFilter(resources.getColor(colorId), PorterDuff.Mode.SRC_ATOP);
-        return drawable;
-    }
-
 }

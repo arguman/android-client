@@ -4,6 +4,7 @@
     <color name="fab_pressed">#1DE9B6</color>
     <color name="fab_plus">#009688</color>
     <color name="fab_label_background">#FFFFFF</color>
+    <color name="fab_label_background_shadow">#33000000</color>
     <color name="fab_label">#000000</color>
     <color name="fab_mini">#1DE9B6</color>
     <color name="fab_mini_pressed">#00BFA5</color>
@@ -16,6 +17,7 @@
     <color name="slider_tab_indicator">#CBCBCB</color>
     <color name="slider_tab_divider">#CBCBCB</color>
     <color name="slider_tab_background">#F1F1F1</color>
+    <color name="slider_tab_background_selected">#F1F1F1</color>
     <color name="slider_tab_text">#525252</color>
 
     <color name="highlight_background">#C0FFFFFF</color>
