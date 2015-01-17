@@ -9,8 +9,8 @@ import android.view.Menu;
 import android.view.MenuItem;
 import android.widget.TextView;
 
-import org.arguman.app.At;
 import org.arguman.app.R;
+import org.arguman.app.controller.UserController;
 import org.arguman.app.library.FontCache;
 import org.arguman.app.ui.adapter.DashboardPagerAdapter;
 import org.arguman.app.ui.view.SlidingTabLayout;
@@ -19,13 +19,11 @@ public class Dashboard extends Activity {
 
     private ViewPager viewPager;
     private SlidingTabLayout slidingTabLayout;
-    private At at;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
-        at = (At) this.getApplication();
 
         viewPager = (ViewPager) findViewById(R.id.viewpager);
         viewPager.setAdapter(new DashboardPagerAdapter(this));
@@ -42,7 +40,7 @@ public class Dashboard extends Activity {
         textView.setText(getString(R.string.app_name));
         textView.setTypeface(typeface);
 
-        boolean loginState = at.userController.getLoginState();
+        boolean loginState = UserController.getInstance(getApplicationContext()).getLoginState();
         setFabs(loginState);
     }
 
