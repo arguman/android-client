@@ -7,6 +7,7 @@ import android.database.MatrixCursor;
 import android.graphics.Typeface;
 import android.os.Bundle;
 import android.support.v4.view.ViewPager;
+import android.util.Log;
 import android.util.TypedValue;
 import android.view.Menu;
 import android.view.MenuItem;
@@ -17,11 +18,13 @@ import org.arguman.app.At;
 import org.arguman.app.R;
 import org.arguman.app.controller.UserController;
 import org.arguman.app.library.FontCache;
+import org.arguman.app.library.TimestampParser;
 import org.arguman.app.model.ArgumentModel;
 import org.arguman.app.ui.adapter.DashboardPagerAdapter;
 import org.arguman.app.ui.adapter.SearchAdapter;
 import org.arguman.app.ui.view.SlidingTabLayout;
 
+import java.sql.Timestamp;
 import java.util.ArrayList;
 
 public class Dashboard extends Activity {
@@ -33,6 +36,7 @@ public class Dashboard extends Activity {
     private ArrayList<ArgumentModel> arguments = new ArrayList<ArgumentModel>();
     private ArrayList<String> argumentTitles  = new ArrayList<String>();
     private ArgumentModel argument;
+    private TimestampParser timestampParser; // TODO: temporary
 
     private SearchManager searchManager;
     private SearchView    searchView;
@@ -42,7 +46,14 @@ public class Dashboard extends Activity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
-        getDummyData(); // TODO: temporary
+        // TODO: temporary -BEGIN-
+        getDummyData();
+        timestampParser = TimestampParser.getInstance(this);
+        timestampParser.setTimestamp(Timestamp.valueOf("2014-01-17 15:00:33.812"));
+        Log.d("TimestampParser_Test", String.valueOf(timestampParser.getDifference()) + " " +
+                                      timestampParser.getDifferenceExtension() + " " +
+                                      getString(R.string.timestamp_ago));
+        // TODO: temporary -END-
 
         viewPager = (ViewPager) findViewById(R.id.viewpager);
         viewPager.setAdapter(new DashboardPagerAdapter(this, arguments));
