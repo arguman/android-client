@@ -9,5 +9,7 @@
     <string name="dashboard_tab_news_feed">Haber Kaynağı</string>
     <string name="dashboard_tab_top">Seçilmişler</string>
     <string name="dashboard_tab_statistics">İstatistikler</string>
+    <string name="loading">Yükleniyor</string>
+    <string name="last_sender">son gönderen</string>
 
 </resources>
