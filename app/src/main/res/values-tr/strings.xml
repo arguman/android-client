@@ -21,4 +21,5 @@
 
     <string name="action_search">Ara</string>
     <string name="action_notifications">Bildirimler</string>
+    <string name="search">Arama</string>
 </resources>
