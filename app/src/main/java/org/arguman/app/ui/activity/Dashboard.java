@@ -10,8 +10,12 @@ import android.support.v4.view.ViewPager;
 import android.util.TypedValue;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.view.View;
 import android.widget.SearchView;
 import android.widget.TextView;
+
+import com.getbase.floatingactionbutton.FloatingActionButton;
+import com.getbase.floatingactionbutton.FloatingActionsMenu;
 
 import org.arguman.app.R;
 import org.arguman.app.controller.UserController;
@@ -31,6 +35,8 @@ public class Dashboard extends Activity {
     private ArrayList<ArgumentModel> arguments = new ArrayList<ArgumentModel>();
     private ArrayList<String> argumentTitles = new ArrayList<String>();
     private ArgumentModel argument;
+    private FloatingActionsMenu fabGroup;
+    private View fabHighlight;
 
     private SearchManager searchManager;
     private SearchView searchView;
@@ -42,6 +48,8 @@ public class Dashboard extends Activity {
 
         getDummyData(); // TODO: temporary
 
+        fabHighlight = findViewById(R.id.highlight);
+        fabGroup = (FloatingActionsMenu) findViewById(R.id.multiple_actions);
         viewPager = (ViewPager) findViewById(R.id.viewpager);
         viewPager.setAdapter(new DashboardPagerAdapter(this, arguments));
         slidingTabLayout = (SlidingTabLayout) findViewById(R.id.tab_layout);
@@ -206,11 +214,57 @@ public class Dashboard extends Activity {
     }
 
     private void setFabs(boolean loginState) {
+        // TODO: If somewhere other than fabGroup gets clicked, collapse fabGroup.
+        fabGroup.setOnFloatingActionsMenuUpdateListener(
+                new FloatingActionsMenu.OnFloatingActionsMenuUpdateListener() {
+                    @Override
+                    public void onMenuExpanded() {
+                        fabHighlight.setVisibility(View.VISIBLE);
+                        // TODO: set viewpager not clickable.
+                    }
+
+                    @Override
+                    public void onMenuCollapsed() {
+                        fabHighlight.setVisibility(View.GONE);
+                        // TODO: set viewpager clickable.
+                    }
+                });
+        FloatingActionButton actionAddArgument = new FloatingActionButton(getBaseContext());
+        setFabButtonStyle(actionAddArgument, R.drawable.ic_search, R.color.fab,
+                R.color.fab_pressed, R.string.fab_argument);
+        FloatingActionButton actionFeedback = new FloatingActionButton(getBaseContext());
+        setFabButtonStyle(actionFeedback, R.drawable.ic_search, R.color.fab,
+                R.color.fab_pressed, R.string.fab_feedback);
+        FloatingActionButton actionAbout = new FloatingActionButton(getBaseContext());
+        setFabButtonStyle(actionAbout, R.drawable.ic_search, R.color.fab,
+                R.color.fab_pressed, R.string.fab_about);
+        fabGroup.addButton(actionFeedback);
+        fabGroup.addButton(actionAbout);
         if (loginState) {
-
+            FloatingActionButton actionProfile = new FloatingActionButton(getBaseContext());
+            setFabButtonStyle(actionProfile, R.drawable.ic_search, R.color.fab,
+                    R.color.fab_pressed, R.string.fab_profile);
+            fabGroup.addButton(actionProfile);
         } else {
-
+            FloatingActionButton actionLogin = new FloatingActionButton(getBaseContext());
+            setFabButtonStyle(actionLogin, R.drawable.ic_search, R.color.fab,
+                    R.color.fab_pressed, R.string.fab_login);
+            FloatingActionButton actionSignUp = new FloatingActionButton(getBaseContext());
+            setFabButtonStyle(actionSignUp, R.drawable.ic_search, R.color.fab,
+                    R.color.fab_pressed, R.string.fab_sign_up);
+            fabGroup.addButton(actionLogin);
+            fabGroup.addButton(actionSignUp);
         }
+        fabGroup.addButton(actionAddArgument);
     }
 
+    private void setFabButtonStyle(FloatingActionButton floatingActionButton, int iconResId,
+                                   int colorResId, int pressedColorResId, int titleResId) {
+        floatingActionButton.setSize(FloatingActionButton.SIZE_MINI);
+        floatingActionButton.setColorNormal(getResources().getColor(colorResId));
+        floatingActionButton.setColorPressed(getResources().getColor(pressedColorResId));
+        floatingActionButton.setIcon(iconResId);
+        floatingActionButton.setTitle(getResources().getString(titleResId));
+        floatingActionButton.setStrokeVisible(false);
+    }
 }
