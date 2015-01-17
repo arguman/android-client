@@ -13,7 +13,6 @@ import android.view.MenuItem;
 import android.widget.SearchView;
 import android.widget.TextView;
 
-import org.arguman.app.At;
 import org.arguman.app.R;
 import org.arguman.app.controller.UserController;
 import org.arguman.app.library.FontCache;
@@ -28,14 +27,13 @@ public class Dashboard extends Activity {
 
     private ViewPager viewPager;
     private SlidingTabLayout slidingTabLayout;
-    private At at;
     private Menu menu;
     private ArrayList<ArgumentModel> arguments = new ArrayList<ArgumentModel>();
-    private ArrayList<String> argumentTitles  = new ArrayList<String>();
+    private ArrayList<String> argumentTitles = new ArrayList<String>();
     private ArgumentModel argument;
 
     private SearchManager searchManager;
-    private SearchView    searchView;
+    private SearchView searchView;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -167,7 +165,6 @@ public class Dashboard extends Activity {
     public boolean onCreateOptionsMenu(Menu menu) {
         getMenuInflater().inflate(R.menu.menu_main, menu);
         this.menu = menu;
-
         searchManager = (SearchManager) getSystemService(Context.SEARCH_SERVICE);
         searchView = (SearchView) menu.findItem(R.id.action_search).getActionView();
         searchView.setSearchableInfo(searchManager.getSearchableInfo(getComponentName()));
@@ -188,8 +185,8 @@ public class Dashboard extends Activity {
     }
 
     private void loadHistory(String s) {
-        String[] columns = new String[] {"_id", "text"};
-        Object[] temp    = new Object[] {0, "default"};
+        String[] columns = new String[]{"_id", "text"};
+        Object[] temp = new Object[]{0, "default"};
         MatrixCursor cursor = new MatrixCursor(columns);
         argumentTitles = new ArrayList<String>();
         for (int i = 0; i < arguments.size(); i++) {
