@@ -3,8 +3,11 @@ package org.arguman.app.ui.activity;
 import android.app.Activity;
 import android.app.SearchManager;
 import android.content.Context;
+import android.content.res.Resources;
 import android.database.MatrixCursor;
+import android.graphics.PorterDuff;
 import android.graphics.Typeface;
+import android.graphics.drawable.Drawable;
 import android.os.Bundle;
 import android.support.v4.view.ViewPager;
 import android.util.TypedValue;
@@ -230,28 +233,28 @@ public class Dashboard extends Activity {
                     }
                 });
         FloatingActionButton actionAddArgument = new FloatingActionButton(getBaseContext());
-        setFabButtonStyle(actionAddArgument, R.drawable.ic_search, R.color.fab,
-                R.color.fab_pressed, R.string.fab_argument);
+        setFabButtonStyle(actionAddArgument, R.drawable.ic_create, R.color.fab_mini,
+                R.color.fab_mini_pressed, R.string.fab_argument);
         FloatingActionButton actionFeedback = new FloatingActionButton(getBaseContext());
-        setFabButtonStyle(actionFeedback, R.drawable.ic_search, R.color.fab,
-                R.color.fab_pressed, R.string.fab_feedback);
+        setFabButtonStyle(actionFeedback, R.drawable.ic_email, R.color.fab_mini,
+                R.color.fab_mini_pressed, R.string.fab_feedback);
         FloatingActionButton actionAbout = new FloatingActionButton(getBaseContext());
-        setFabButtonStyle(actionAbout, R.drawable.ic_search, R.color.fab,
-                R.color.fab_pressed, R.string.fab_about);
+        setFabButtonStyle(actionAbout, R.drawable.ic_info, R.color.fab_mini,
+                R.color.fab_mini_pressed, R.string.fab_about);
         fabGroup.addButton(actionFeedback);
         fabGroup.addButton(actionAbout);
         if (loginState) {
             FloatingActionButton actionProfile = new FloatingActionButton(getBaseContext());
-            setFabButtonStyle(actionProfile, R.drawable.ic_search, R.color.fab,
-                    R.color.fab_pressed, R.string.fab_profile);
+            setFabButtonStyle(actionProfile, R.drawable.ic_person, R.color.fab_mini,
+                    R.color.fab_mini_pressed, R.string.fab_profile);
             fabGroup.addButton(actionProfile);
         } else {
             FloatingActionButton actionLogin = new FloatingActionButton(getBaseContext());
-            setFabButtonStyle(actionLogin, R.drawable.ic_search, R.color.fab,
-                    R.color.fab_pressed, R.string.fab_login);
+            setFabButtonStyle(actionLogin, R.drawable.ic_key, R.color.fab_mini,
+                    R.color.fab_mini_pressed, R.string.fab_login);
             FloatingActionButton actionSignUp = new FloatingActionButton(getBaseContext());
-            setFabButtonStyle(actionSignUp, R.drawable.ic_search, R.color.fab,
-                    R.color.fab_pressed, R.string.fab_sign_up);
+            setFabButtonStyle(actionSignUp, R.drawable.ic_key, R.color.fab_mini,
+                    R.color.fab_mini_pressed, R.string.fab_sign_up);
             fabGroup.addButton(actionLogin);
             fabGroup.addButton(actionSignUp);
         }
@@ -267,4 +270,12 @@ public class Dashboard extends Activity {
         floatingActionButton.setTitle(getResources().getString(titleResId));
         floatingActionButton.setStrokeVisible(false);
     }
+
+    public Drawable colorOverlay(Resources resources, int drawableId, int colorId) {
+        Drawable drawable = resources.getDrawable(drawableId);
+        drawable.mutate();
+        drawable.setColorFilter(resources.getColor(colorId), PorterDuff.Mode.SRC_ATOP);
+        return drawable;
+    }
+
 }

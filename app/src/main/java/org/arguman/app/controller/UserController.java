@@ -1,7 +1,6 @@
 package org.arguman.app.controller;
 
 import android.content.Context;
-import android.util.Log;
 
 import org.arguman.app.library.ObjectCache;
 import org.arguman.app.model.UserModel;
