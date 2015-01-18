@@ -1,14 +1,17 @@
 package org.arguman.app.ui.activity;
 
-import android.app.Activity;
 import android.app.SearchManager;
 import android.content.Context;
 import android.database.MatrixCursor;
-import android.graphics.Typeface;
 import android.os.Bundle;
 import android.support.v4.view.ViewPager;
-import android.util.TypedValue;
+import android.support.v7.app.ActionBar;
+import android.support.v7.app.ActionBarActivity;
+import android.support.v7.widget.Toolbar;
+import android.text.Spannable;
+import android.text.SpannableString;
 import android.view.Menu;
+import android.view.MenuInflater;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.SearchView;
@@ -19,7 +22,7 @@ import com.getbase.floatingactionbutton.FloatingActionsMenu;
 
 import org.arguman.app.R;
 import org.arguman.app.controller.UserController;
-import org.arguman.app.library.FontCache;
+import org.arguman.app.library.TypefaceSpan;
 import org.arguman.app.model.ArgumentModel;
 import org.arguman.app.ui.adapter.DashboardPagerAdapter;
 import org.arguman.app.ui.adapter.SearchAdapter;
@@ -27,7 +30,7 @@ import org.arguman.app.ui.view.SlidingTabLayout;
 
 import java.util.ArrayList;
 
-public class Dashboard extends Activity {
+public class Dashboard extends ActionBarActivity {
 
     private ViewPager viewPager;
     private SlidingTabLayout slidingTabLayout;
@@ -46,6 +49,9 @@ public class Dashboard extends Activity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
+        Toolbar toolbar = (Toolbar) findViewById(R.id.dashboard_toolbar);
+        setSupportActionBar(toolbar);
+
         // TODO: temporary -BEGIN-
         getDummyData();
         // TODO: temporary -END-
@@ -59,13 +65,18 @@ public class Dashboard extends Activity {
         slidingTabLayout.setBackgroundColor(getResources().getColor(R.color.slider_tab_background));
         slidingTabLayout.setDividerColors(getResources().getColor(R.color.slider_tab_divider));
 
-        int titleId = getResources().getIdentifier("action_bar_title", "id", "android");
+        SpannableString s = new SpannableString(getResources().getString(R.string.app_name));
+        s.setSpan(new TypefaceSpan(this, "fonts/american_typewriter.ttf"), 0, s.length(),
+                Spannable.SPAN_EXCLUSIVE_EXCLUSIVE);
+        ActionBar actionBar = getSupportActionBar();
+        actionBar.setTitle(s);
+        /*int titleId = getResources().getIdentifier("action_bar_title", "id", "android");
         TextView textView = (TextView) findViewById(titleId);
         Typeface typeface = Typeface.create(FontCache.get("fonts/american_typewriter.ttf", this), Typeface.NORMAL);
         textView.setTextSize(TypedValue.COMPLEX_UNIT_DIP, 24);
         textView.setText(getString(R.string.app_name));
         textView.setTypeface(typeface);
-
+*/
         boolean loginState = UserController.getInstance(getApplicationContext()).getLoginState();
         setFabs(loginState);
     }
@@ -172,7 +183,8 @@ public class Dashboard extends Activity {
 
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
-        getMenuInflater().inflate(R.menu.menu_main, menu);
+        MenuInflater inflater = getMenuInflater();
+        inflater.inflate(R.menu.menu_main, menu);
         this.menu = menu;
 
         View notificationsItemView = menu.findItem(R.id.action_notifications).getActionView();
@@ -194,7 +206,7 @@ public class Dashboard extends Activity {
             }
         });
 
-        return true;
+        return super.onCreateOptionsMenu(menu);
     }
 
     private void loadHistory(String s) {

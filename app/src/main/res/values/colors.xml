@@ -9,10 +9,16 @@
     <color name="fab_mini">#A7FFEB</color>
     <color name="fab_mini_pressed">#64FFDA</color>
 
-    <color name="actionbar_background">#FFF8B2</color>
     <color name="actionbar_title">#030302</color>
     <color name="actionbar_notifications_background">#030302</color>
     <color name="actionbar_notifications_text">#FFF8B2</color>
+
+    <color name="arguman_primary">#FFF8B2</color>
+    <color name="arguman_primary_dark">#030302</color>
+    <color name="arguman_tint">#030302</color>
+    <color name="arguman_primary_text">#030302</color>
+    <color name="arguman_window_background">#FFFFFF</color>
+    <color name="arguman_navigation_bar">#030302</color>
 
     <color name="slider_tab_indicator">#CBCBCB</color>
     <color name="slider_tab_divider">#CBCBCB</color>

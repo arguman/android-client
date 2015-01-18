@@ -1,5 +1,6 @@
 <menu xmlns:tools="http://schemas.android.com/tools"
     xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     tools:context=".Dashboard">
 
     <item
@@ -7,14 +8,14 @@
         android:icon="@drawable/ic_search"
         android:title="@string/action_search"
         android:orderInCategory="1"
-        android:showAsAction="always"
-        android:actionViewClass="android.widget.SearchView" />
+        app:showAsAction="always"
+        app:actionViewClass="android.widget.SearchView" />
 
     <item
         android:id="@+id/action_notifications"
         android:title="@string/action_notifications"
         android:orderInCategory="2"
-        android:showAsAction="always"
-        android:actionLayout="@layout/circular_text_item" />
+        app:showAsAction="always"
+        app:actionLayout="@layout/circular_text_item" />
 
 </menu>
