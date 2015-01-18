@@ -16,7 +16,6 @@ import java.util.List;
 
 public class DashboardPagerAdapter extends PagerAdapter {
 
-    // TODO: Define an argument list here.
     private Activity activity;
     private List<String> titleList;
     private ArrayList<ArgumentModel> arguments;

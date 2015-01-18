@@ -6,20 +6,28 @@
     android:orientation="vertical"
     tools:context=".Dashboard">
 
-    <org.arguman.app.ui.view.SlidingTabLayout
-        android:id="@+id/tab_layout"
-        android:layout_width="match_parent"
-        android:layout_height="?android:attr/actionBarSize" />
-
     <FrameLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent">
+
+        <org.arguman.app.ui.view.SlidingTabLayout
+            android:id="@+id/tab_layout"
+            android:layout_width="match_parent"
+            android:layout_height="?android:attr/actionBarSize" />
 
         <android.support.v4.view.ViewPager
             android:id="@+id/viewpager"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
+            android:layout_marginTop="?android:attr/actionBarSize"
             android:background="@android:color/white" />
+
+        <View
+            android:id="@+id/highlight"
+            android:background="@color/highlight_background"
+            android:visibility="gone"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent" />
 
         <com.getbase.floatingactionbutton.FloatingActionsMenu
             android:id="@+id/multiple_actions"
@@ -31,27 +39,7 @@
             fab:fab_labelStyle="@style/FabLabel"
             android:layout_gravity="bottom|right"
             android:layout_marginBottom="16dp"
-            android:layout_marginRight="16dp">
-
-            <com.getbase.floatingactionbutton.FloatingActionButton
-                android:id="@+id/action_a"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                fab:fab_colorNormal="@color/fab"
-                fab:fab_colorPressed="@color/fab_pressed"
-                fab:fab_size="mini"
-                fab:fab_title="Action A" />
-
-            <com.getbase.floatingactionbutton.FloatingActionButton
-                android:id="@+id/action_b"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                fab:fab_colorNormal="@color/fab"
-                fab:fab_colorPressed="@color/fab_pressed"
-                fab:fab_size="mini"
-                fab:fab_title="Action A" />
-
-        </com.getbase.floatingactionbutton.FloatingActionsMenu>
+            android:layout_marginRight="16dp" />
 
     </FrameLayout>
 

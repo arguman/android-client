@@ -24,7 +24,8 @@ dependencies {
     compile 'com.android.support:appcompat-v7:21.0.+'
     compile 'com.getbase:floatingactionbutton:1.5.1'
     compile 'com.squareup.picasso:picasso:2.4.0'
+    compile 'com.squareup.retrofit:retrofit:1.9.0'
     compile 'com.squareup.okhttp:okhttp-urlconnection:2.0.0'
     compile 'com.squareup.okhttp:okhttp:2.0.0'
-    compile files('libs/gson-2.2.4.jar')
+    compile 'com.google.code.gson:gson:2.2.+'
 }
