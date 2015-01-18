@@ -3,17 +3,23 @@ package org.arguman.app.ui.activity;
 import android.app.Activity;
 import android.app.SearchManager;
 import android.content.Context;
+import android.content.res.Resources;
 import android.database.MatrixCursor;
+import android.graphics.PorterDuff;
 import android.graphics.Typeface;
+import android.graphics.drawable.Drawable;
 import android.os.Bundle;
 import android.support.v4.view.ViewPager;
 import android.util.TypedValue;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.view.View;
 import android.widget.SearchView;
 import android.widget.TextView;
 
-import org.arguman.app.At;
+import com.getbase.floatingactionbutton.FloatingActionButton;
+import com.getbase.floatingactionbutton.FloatingActionsMenu;
+
 import org.arguman.app.R;
 import org.arguman.app.controller.UserController;
 import org.arguman.app.library.FontCache;
@@ -28,14 +34,15 @@ public class Dashboard extends Activity {
 
     private ViewPager viewPager;
     private SlidingTabLayout slidingTabLayout;
-    private At at;
     private Menu menu;
     private ArrayList<ArgumentModel> arguments = new ArrayList<ArgumentModel>();
-    private ArrayList<String> argumentTitles  = new ArrayList<String>();
+    private ArrayList<String> argumentTitles = new ArrayList<String>();
     private ArgumentModel argument;
+    private FloatingActionsMenu fabGroup;
+    private View fabHighlight;
 
     private SearchManager searchManager;
-    private SearchView    searchView;
+    private SearchView searchView;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -46,6 +53,8 @@ public class Dashboard extends Activity {
         getDummyData();
         // TODO: temporary -END-
 
+        fabHighlight = findViewById(R.id.highlight);
+        fabGroup = (FloatingActionsMenu) findViewById(R.id.multiple_actions);
         viewPager = (ViewPager) findViewById(R.id.viewpager);
         viewPager.setAdapter(new DashboardPagerAdapter(this, arguments));
         slidingTabLayout = (SlidingTabLayout) findViewById(R.id.tab_layout);
@@ -169,7 +178,6 @@ public class Dashboard extends Activity {
     public boolean onCreateOptionsMenu(Menu menu) {
         getMenuInflater().inflate(R.menu.menu_main, menu);
         this.menu = menu;
-
         searchManager = (SearchManager) getSystemService(Context.SEARCH_SERVICE);
         searchView = (SearchView) menu.findItem(R.id.action_search).getActionView();
         searchView.setSearchableInfo(searchManager.getSearchableInfo(getComponentName()));
@@ -190,8 +198,8 @@ public class Dashboard extends Activity {
     }
 
     private void loadHistory(String s) {
-        String[] columns = new String[] {"_id", "text"};
-        Object[] temp    = new Object[] {0, "default"};
+        String[] columns = new String[]{"_id", "text"};
+        Object[] temp = new Object[]{0, "default"};
         MatrixCursor cursor = new MatrixCursor(columns);
         argumentTitles = new ArrayList<String>();
         for (int i = 0; i < arguments.size(); i++) {
@@ -211,11 +219,65 @@ public class Dashboard extends Activity {
     }
 
     private void setFabs(boolean loginState) {
+        // TODO: If somewhere other than fabGroup gets clicked, collapse fabGroup.
+        fabGroup.setOnFloatingActionsMenuUpdateListener(
+                new FloatingActionsMenu.OnFloatingActionsMenuUpdateListener() {
+                    @Override
+                    public void onMenuExpanded() {
+                        fabHighlight.setVisibility(View.VISIBLE);
+                        // TODO: set viewpager not clickable.
+                    }
+
+                    @Override
+                    public void onMenuCollapsed() {
+                        fabHighlight.setVisibility(View.GONE);
+                        // TODO: set viewpager clickable.
+                    }
+                });
+        FloatingActionButton actionAddArgument = new FloatingActionButton(getBaseContext());
+        setFabButtonStyle(actionAddArgument, R.drawable.ic_create, R.color.fab_mini,
+                R.color.fab_mini_pressed, R.string.fab_argument);
+        FloatingActionButton actionFeedback = new FloatingActionButton(getBaseContext());
+        setFabButtonStyle(actionFeedback, R.drawable.ic_email, R.color.fab_mini,
+                R.color.fab_mini_pressed, R.string.fab_feedback);
+        FloatingActionButton actionAbout = new FloatingActionButton(getBaseContext());
+        setFabButtonStyle(actionAbout, R.drawable.ic_info, R.color.fab_mini,
+                R.color.fab_mini_pressed, R.string.fab_about);
+        fabGroup.addButton(actionFeedback);
+        fabGroup.addButton(actionAbout);
         if (loginState) {
-
+            FloatingActionButton actionProfile = new FloatingActionButton(getBaseContext());
+            setFabButtonStyle(actionProfile, R.drawable.ic_person, R.color.fab_mini,
+                    R.color.fab_mini_pressed, R.string.fab_profile);
+            fabGroup.addButton(actionProfile);
         } else {
-
+            FloatingActionButton actionLogin = new FloatingActionButton(getBaseContext());
+            setFabButtonStyle(actionLogin, R.drawable.ic_key, R.color.fab_mini,
+                    R.color.fab_mini_pressed, R.string.fab_login);
+            FloatingActionButton actionSignUp = new FloatingActionButton(getBaseContext());
+            setFabButtonStyle(actionSignUp, R.drawable.ic_key, R.color.fab_mini,
+                    R.color.fab_mini_pressed, R.string.fab_sign_up);
+            fabGroup.addButton(actionLogin);
+            fabGroup.addButton(actionSignUp);
         }
+        fabGroup.addButton(actionAddArgument);
+    }
+
+    private void setFabButtonStyle(FloatingActionButton floatingActionButton, int iconResId,
+                                   int colorResId, int pressedColorResId, int titleResId) {
+        floatingActionButton.setSize(FloatingActionButton.SIZE_MINI);
+        floatingActionButton.setColorNormal(getResources().getColor(colorResId));
+        floatingActionButton.setColorPressed(getResources().getColor(pressedColorResId));
+        floatingActionButton.setIcon(iconResId);
+        floatingActionButton.setTitle(getResources().getString(titleResId));
+        floatingActionButton.setStrokeVisible(false);
+    }
+
+    public Drawable colorOverlay(Resources resources, int drawableId, int colorId) {
+        Drawable drawable = resources.getDrawable(drawableId);
+        drawable.mutate();
+        drawable.setColorFilter(resources.getColor(colorId), PorterDuff.Mode.SRC_ATOP);
+        return drawable;
     }
 
 }
