@@ -37,82 +37,36 @@ public class TimestampParser {
         return CURRENT_TIME;
     }
 
-    private long getTimeDifference() {
-        return Math.abs(CURRENT_TIME.getTime() - timestamp.getTime());
+    public static String getTimeAgo() {
+        long time = timestamp.getTime();
+        long now = CURRENT_TIME.getTime();
+        if (time > now || time <= 0)
+            return "";
+        int dim = getTimeDistanceInMinutes(time);
+        if (dim == 0)
+            return context.getString(R.string.timestamp_just_now);
+        else if (dim >= 2 && dim <= 44)
+            return dim + " " + context.getString(R.string.timestamp_minutes_ago);
+        else if (dim >= 45 && dim <= 89)
+            return context.getString(R.string.timestamp_an_hour_ago);
+        else if (dim >= 90 && dim <= 1439)
+            return (Math.round(dim / 60)) + " " + context.getString(R.string.timestamp_hours_ago);
+        else if (dim >= 1440 && dim <= 2519)
+            return context.getString(R.string.timestamp_yesterday);
+        else if (dim >= 2520 && dim <= 43199)
+            return (Math.round(dim / 1440)) + " " + context.getString(R.string.timestamp_days_ago);
+        else if (dim >= 43200 && dim <= 86399)
+            return context.getString(R.string.timestamp_last_month);
+        else if (dim >= 86400 && dim <= 525599)
+            return (Math.round(dim / 43200)) + " " + context.getString(R.string.timestamp_months_ago);
+        else if (dim >= 525600 && dim <= 655199)
+            return context.getString(R.string.timestamp_last_year);
+        return (Math.round(dim / 525600)) + " " + context.getString(R.string.timestamp_years_ago);
     }
 
-    public long getSecondDifference() {
-        return getTimeDifference() / 1000;
-    }
-
-    public long getMinuteDifference() {
-        return getTimeDifference() / (60 * 1000);
-    }
-
-    public long getHourDifference() {
-        return getTimeDifference() / (60 * 60 * 1000);
-    }
-
-    public long getDayDifference() {
-        return getTimeDifference() / (24 * 60 * 60 * 1000);
-    }
-
-    public long getWeekDifference() {
-        return getTimeDifference() / (7 * 24 * 60 * 60 * 1000);
-    }
-
-    public long getMonthDifference() {
-        return getTimeDifference() / (30 * 24 * 60 * 60 * 1000);
-    }
-
-    public long getYearDifference() {
-        return getTimeDifference() / (365 * 24 * 60 * 60 * 1000);
-    }
-
-    public long getDifference() {
-        if (getMonthDifference() >= 12)
-            return getYearDifference();
-        if (getWeekDifference() >= 4)
-            return getMonthDifference();
-        if (getDayDifference() >= 7)
-            return getWeekDifference();
-        if (getHourDifference() >= 24)
-            return getDayDifference();
-        if (getMinuteDifference() >= 60)
-            return getHourDifference();
-        if (getSecondDifference() >= 60)
-            return getMinuteDifference();
-        return getSecondDifference();
-    }
-
-    public String getDifferenceExtension() {
-        if (getMonthDifference() == 12)
-            return context.getString(R.string.timestamp_year);
-        if (getMonthDifference() > 12)
-            return context.getString(R.string.timestamp_years);
-        if (getWeekDifference() == 4)
-            return context.getString(R.string.timestamp_month);
-        if (getWeekDifference() > 4)
-            return context.getString(R.string.timestamp_months);
-        if (getDayDifference() == 7)
-            return context.getString(R.string.timestamp_week);
-        if (getDayDifference() > 7)
-            return context.getString(R.string.timestamp_weeks);
-        if (getHourDifference() == 24)
-            return context.getString(R.string.timestamp_day);
-        if (getHourDifference() > 24)
-            return context.getString(R.string.timestamp_days);
-        if (getMinuteDifference() == 60)
-            return context.getString(R.string.timestamp_hour);
-        if (getMinuteDifference() > 60)
-            return context.getString(R.string.timestamp_hours);
-        if (getSecondDifference() == 60)
-            return context.getString(R.string.timestamp_minute);
-        if (getSecondDifference() > 60)
-            return context.getString(R.string.timestamp_minutes);
-        if (getSecondDifference() == 1)
-            return context.getString(R.string.timestamp_second);
-        return context.getString(R.string.timestamp_seconds);
+    private static int getTimeDistanceInMinutes(long time) {
+        long timeDistance = CURRENT_TIME.getTime() - time;
+        return Math.round((Math.abs(timeDistance) / 1000) / 60);
     }
 
 }
