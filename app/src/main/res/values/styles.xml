@@ -1,17 +1,17 @@
 <resources>
 
-    <style name="AppTheme" parent="@android:style/Theme.Holo.Light">
-        <item name="android:actionBarStyle">@style/AppTheme.ArgumanActionBar</item>
-        <item name="android:windowContentOverlay">@android:color/transparent</item>
+    <style name="AppTheme" parent="Theme.AppCompat.Light.NoActionBar">
+        <item name="colorPrimary">@color/arguman_primary</item>
+        <item name="colorAccent">@color/arguman_tint</item>
+        <item name="colorPrimaryDark">@color/arguman_primary_dark</item>
     </style>
 
-    <style name="AppTheme.ArgumanActionBar" parent="@android:style/Widget.Holo.Light.ActionBar.Solid.Inverse">
-        <item name="android:background">@color/actionbar_background</item>
+    <style name="AppTheme.ArgumanActionBar" parent="Widget.AppCompat.Light.ActionBar.Solid">
         <item name="android:titleTextStyle">@style/AppTheme.ArgumantActionBar.TitleTextStyle</item>
         <item name="android:icon">@android:color/transparent</item>
     </style>
 
-    <style name="AppTheme.ArgumantActionBar.TitleTextStyle" parent="@android:style/TextAppearance.Holo.Widget.ActionBar.Title">
+    <style name="AppTheme.ArgumantActionBar.TitleTextStyle" parent="TextAppearance.AppCompat.Widget.ActionBar.Title">
         <item name="android:textColor">@color/actionbar_title</item>
     </style>
 
