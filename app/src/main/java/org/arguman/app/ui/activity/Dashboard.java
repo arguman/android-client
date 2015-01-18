@@ -3,11 +3,8 @@ package org.arguman.app.ui.activity;
 import android.app.Activity;
 import android.app.SearchManager;
 import android.content.Context;
-import android.content.res.Resources;
 import android.database.MatrixCursor;
-import android.graphics.PorterDuff;
 import android.graphics.Typeface;
-import android.graphics.drawable.Drawable;
 import android.os.Bundle;
 import android.support.v4.view.ViewPager;
 import android.util.TypedValue;
@@ -171,13 +168,16 @@ public class Dashboard extends Activity {
         argument.setTitle("Arap Baharı henüz başarıya ulaşmadığı halde ciddi bir değişim dinamiği ortaya çıkarmıştır.");
         argument.setTimestamp(20151701035533l);
         arguments.add(argument);
-
     }
 
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
         getMenuInflater().inflate(R.menu.menu_main, menu);
         this.menu = menu;
+
+        View notificationsItemView = menu.findItem(R.id.action_notifications).getActionView();
+        ((TextView) notificationsItemView.findViewById(R.id.item_title)).setText(String.valueOf(2));
+
         searchManager = (SearchManager) getSystemService(Context.SEARCH_SERVICE);
         searchView = (SearchView) menu.findItem(R.id.action_search).getActionView();
         searchView.setSearchableInfo(searchManager.getSearchableInfo(getComponentName()));
@@ -271,13 +271,6 @@ public class Dashboard extends Activity {
         floatingActionButton.setIcon(iconResId);
         floatingActionButton.setTitle(getResources().getString(titleResId));
         floatingActionButton.setStrokeVisible(false);
-    }
-
-    public Drawable colorOverlay(Resources resources, int drawableId, int colorId) {
-        Drawable drawable = resources.getDrawable(drawableId);
-        drawable.mutate();
-        drawable.setColorFilter(resources.getColor(colorId), PorterDuff.Mode.SRC_ATOP);
-        return drawable;
     }
 
 }

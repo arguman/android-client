@@ -13,6 +13,7 @@ import android.view.View;
 import android.widget.HorizontalScrollView;
 import android.widget.TextView;
 
+import org.arguman.app.R;
 import org.arguman.app.library.FontCache;
 
 /**
@@ -158,6 +159,7 @@ public class SlidingTabLayout extends HorizontalScrollView {
         TextView textView = new TextView(context);
         textView.setGravity(Gravity.CENTER);
         textView.setTextSize(TypedValue.COMPLEX_UNIT_SP, TAB_VIEW_TEXT_SIZE_SP);
+        textView.setTextColor(context.getResources().getColor(R.color.slider_tab_text));
         textView.setTypeface(Typeface.create(FontCache.get("fonts/american_typewriter.ttf", context),
                 Typeface.NORMAL));
 

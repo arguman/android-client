@@ -72,6 +72,7 @@ public class UserModel {
         this.followerList = followerList;
     }
 
+    // TODO: Move this functions to UserController as session state changes.
     public void save(Context context) {
         ObjectCache objectCache = ObjectCache.getInstance(context);
         objectCache.putObject(KEY, this);
