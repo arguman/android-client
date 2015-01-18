@@ -23,15 +23,14 @@
     <string name="action_search">Search</string>
     <string name="action_notifications">Notifications</string>
     <string name="timestamp_just_now">just now</string>
-    <string name="timestamp_a_minute_ago">a minute ago</string>
     <string name="timestamp_minutes_ago">minutes ago</string>
     <string name="timestamp_an_hour_ago">an hour ago</string>
     <string name="timestamp_hours_ago">hours ago</string>
     <string name="timestamp_yesterday">yesterday</string>
-    <string name="timestamp_last_year">last year</string>
-    <string name="timestamp_years_ago">years ago</string>
     <string name="timestamp_days_ago">days ago</string>
     <string name="timestamp_last_month">last month</string>
     <string name="timestamp_months_ago">months ago</string>
+    <string name="timestamp_last_year">last year</string>
+    <string name="timestamp_years_ago">years ago</string>
 
 </resources>

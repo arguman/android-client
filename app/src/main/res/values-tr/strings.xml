@@ -22,15 +22,15 @@
     <string name="action_search">Ara</string>
     <string name="action_notifications">Bildirimler</string>
     <string name="search">Arama</string>
-    <string name="timestamp_just_now">biraz önce</string>
-    <string name="timestamp_a_minute_ago">bir dakika önce</string>
-    <string name="timestamp_minutes_ago"> dakika önce</string>
     <string name="timestamp_an_hour_ago">bir saat önce</string>
-    <string name="timestamp_hours_ago">saat önce</string>
-    <string name="timestamp_yesterday">dün</string>
-    <string name="timestamp_last_year">geçen yıl</string>
-    <string name="timestamp_years_ago">yıl önce</string>
     <string name="timestamp_days_ago">gün önce</string>
+    <string name="timestamp_hours_ago">saat önce</string>
+    <string name="timestamp_just_now">şimdi</string>
     <string name="timestamp_last_month">geçen ay</string>
+    <string name="timestamp_last_year">geçen yıl</string>
+    <string name="timestamp_minutes_ago">dakika önce</string>
     <string name="timestamp_months_ago">ay önce</string>
+    <string name="timestamp_years_ago">yıl önce</string>
+    <string name="timestamp_yesterday">dün</string>
+    
 </resources>
