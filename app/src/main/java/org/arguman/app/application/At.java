@@ -1,4 +1,4 @@
-package org.arguman.app;
+package org.arguman.app.application;
 
 import android.app.Application;
 import android.content.res.Configuration;

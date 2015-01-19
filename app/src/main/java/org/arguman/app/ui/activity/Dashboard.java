@@ -70,13 +70,7 @@ public class Dashboard extends ActionBarActivity {
                 Spannable.SPAN_EXCLUSIVE_EXCLUSIVE);
         ActionBar actionBar = getSupportActionBar();
         actionBar.setTitle(s);
-        /*int titleId = getResources().getIdentifier("action_bar_title", "id", "android");
-        TextView textView = (TextView) findViewById(titleId);
-        Typeface typeface = Typeface.create(FontCache.get("fonts/american_typewriter.ttf", this), Typeface.NORMAL);
-        textView.setTextSize(TypedValue.COMPLEX_UNIT_DIP, 24);
-        textView.setText(getString(R.string.app_name));
-        textView.setTypeface(typeface);
-*/
+
         boolean loginState = UserController.getInstance(getApplicationContext()).getLoginState();
         setFabs(loginState);
     }
