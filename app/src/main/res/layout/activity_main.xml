@@ -8,7 +8,7 @@
     tools:context=".Dashboard">
 
     <android.support.v7.widget.Toolbar
-        android:id="@+id/dashboard_toolbar"
+        android:id="@+id/toolbar"
         android:layout_height="wrap_content"
         android:layout_width="match_parent"
         android:minHeight="?attr/actionBarSize"
@@ -25,7 +25,7 @@
             android:layout_height="match_parent">
 
             <org.arguman.app.ui.view.SlidingTabLayout
-                android:id="@+id/tab_layout"
+                android:id="@+id/sliding_tab_layout"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content" />
 
@@ -38,14 +38,14 @@
         </LinearLayout>
 
         <View
-            android:id="@+id/highlight"
+            android:id="@+id/fab_menu_highlight"
             android:background="@color/highlight_background"
             android:visibility="gone"
             android:layout_width="match_parent"
             android:layout_height="match_parent" />
 
         <com.getbase.floatingactionbutton.FloatingActionsMenu
-            android:id="@+id/multiple_actions"
+            android:id="@+id/fab_menu"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             fab:fab_addButtonColorNormal="@color/fab"

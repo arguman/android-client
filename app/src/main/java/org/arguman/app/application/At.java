@@ -4,11 +4,13 @@ import android.app.Application;
 import android.content.res.Configuration;
 
 import org.arguman.app.controller.UserController;
-import org.arguman.app.library.ObjectCache;
+import org.arguman.app.util.ObjectCache;
+import org.arguman.app.rest.ArgumanClient;
 
 public class At extends Application {
 
     private static At at;
+    private static ArgumanClient argumanClient;
 
     public At getInstance() {
         return at;
@@ -18,12 +20,17 @@ public class At extends Application {
     public void onCreate() {
         super.onCreate();
         at = this;
-        initSingletons();
+        initialize();
     }
 
-    private void initSingletons() {
+    private void initialize() {
         ObjectCache.getInstance(getApplicationContext());
         UserController.getInstance(getApplicationContext()).initializeSession();
+        argumanClient = new ArgumanClient();
+    }
+
+    public ArgumanClient getArgumanClient() {
+        return argumanClient;
     }
 
     @Override

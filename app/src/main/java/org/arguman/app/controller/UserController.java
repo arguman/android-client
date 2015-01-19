@@ -2,7 +2,7 @@ package org.arguman.app.controller;
 
 import android.content.Context;
 
-import org.arguman.app.library.ObjectCache;
+import org.arguman.app.util.ObjectCache;
 import org.arguman.app.model.UserModel;
 
 public class UserController {

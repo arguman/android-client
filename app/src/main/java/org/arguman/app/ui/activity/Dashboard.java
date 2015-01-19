@@ -22,7 +22,7 @@ import com.getbase.floatingactionbutton.FloatingActionsMenu;
 
 import org.arguman.app.R;
 import org.arguman.app.controller.UserController;
-import org.arguman.app.library.TypefaceSpan;
+import org.arguman.app.util.TypefaceSpan;
 import org.arguman.app.model.ArgumentModel;
 import org.arguman.app.ui.adapter.DashboardPagerAdapter;
 import org.arguman.app.ui.adapter.SearchAdapter;
@@ -30,16 +30,26 @@ import org.arguman.app.ui.view.SlidingTabLayout;
 
 import java.util.ArrayList;
 
+import butterknife.ButterKnife;
+import butterknife.InjectView;
+
 public class Dashboard extends ActionBarActivity {
 
+    @InjectView(R.id.toolbar)
+    private Toolbar toolbar;
+    @InjectView(R.id.viewpager)
     private ViewPager viewPager;
+    @InjectView(R.id.fab_menu_highlight)
+    private View fabHighlight;
+    @InjectView(R.id.fab_menu)
+    private FloatingActionsMenu fabGroup;
+    @InjectView(R.id.sliding_tab_layout)
     private SlidingTabLayout slidingTabLayout;
+
     private Menu menu;
     private ArrayList<ArgumentModel> arguments = new ArrayList<ArgumentModel>();
     private ArrayList<String> argumentTitles = new ArrayList<String>();
     private ArgumentModel argument;
-    private FloatingActionsMenu fabGroup;
-    private View fabHighlight;
 
     private SearchManager searchManager;
     private SearchView searchView;
@@ -48,19 +58,15 @@ public class Dashboard extends ActionBarActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+        ButterKnife.inject(this);
 
-        Toolbar toolbar = (Toolbar) findViewById(R.id.dashboard_toolbar);
         setSupportActionBar(toolbar);
 
         // TODO: temporary -BEGIN-
         getDummyData();
         // TODO: temporary -END-
 
-        fabHighlight = findViewById(R.id.highlight);
-        fabGroup = (FloatingActionsMenu) findViewById(R.id.multiple_actions);
-        viewPager = (ViewPager) findViewById(R.id.viewpager);
         viewPager.setAdapter(new DashboardPagerAdapter(this, arguments));
-        slidingTabLayout = (SlidingTabLayout) findViewById(R.id.tab_layout);
         slidingTabLayout.setViewPager(viewPager);
         slidingTabLayout.setBackgroundColor(getResources().getColor(R.color.slider_tab_background));
         slidingTabLayout.setDividerColors(getResources().getColor(R.color.slider_tab_divider));
