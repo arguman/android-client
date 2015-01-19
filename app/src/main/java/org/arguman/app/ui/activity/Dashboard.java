@@ -36,15 +36,15 @@ import butterknife.InjectView;
 public class Dashboard extends ActionBarActivity {
 
     @InjectView(R.id.toolbar)
-    private Toolbar toolbar;
+    Toolbar toolbar;
     @InjectView(R.id.viewpager)
-    private ViewPager viewPager;
+    ViewPager viewPager;
     @InjectView(R.id.fab_menu_highlight)
-    private View fabHighlight;
+    View fabHighlight;
     @InjectView(R.id.fab_menu)
-    private FloatingActionsMenu fabGroup;
+    FloatingActionsMenu fabGroup;
     @InjectView(R.id.sliding_tab_layout)
-    private SlidingTabLayout slidingTabLayout;
+    SlidingTabLayout slidingTabLayout;
 
     private Menu menu;
     private ArrayList<ArgumentModel> arguments = new ArrayList<ArgumentModel>();
