@@ -26,6 +26,7 @@ public class AppLanguage {
         Configuration config = new Configuration();
         config.locale = locale;
         context.getResources().updateConfiguration(config, context.getResources().getDisplayMetrics());
+        saveLocale(language);
     }
 
     public void saveLocale(String language) {
