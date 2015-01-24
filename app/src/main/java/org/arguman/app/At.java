@@ -3,8 +3,12 @@ package org.arguman.app;
 import android.app.Application;
 import android.content.res.Configuration;
 
+import com.crashlytics.android.Crashlytics;
+
 import org.arguman.app.controller.UserController;
 import org.arguman.app.library.ObjectCache;
+
+import io.fabric.sdk.android.Fabric;
 
 public class At extends Application {
 
@@ -17,6 +21,7 @@ public class At extends Application {
     @Override
     public void onCreate() {
         super.onCreate();
+        Fabric.with(this, new Crashlytics());
         at = this;
         initSingletons();
     }

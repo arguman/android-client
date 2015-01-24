@@ -28,6 +28,9 @@
                 android:name="android.app.searchable"
                 android:resource="@xml/searchable" />
         </activity>
+        <meta-data
+            android:name="com.crashlytics.ApiKey"
+            android:value="15166b1b76173d2a37da2c828d60492f5027c5bc" />
     </application>
 
 </manifest>
