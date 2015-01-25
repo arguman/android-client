@@ -8,7 +8,7 @@ import android.view.ViewGroup;
 import android.widget.ListView;
 
 import org.arguman.app.R;
-import org.arguman.app.model.ArgumentModel;
+import org.arguman.app.model.ItemsModel;
 
 import java.util.ArrayList;
 import java.util.Arrays;
@@ -18,11 +18,11 @@ public class DashboardPagerAdapter extends PagerAdapter {
 
     private Activity activity;
     private List<String> titleList;
-    private ArrayList<ArgumentModel> arguments;
+    private ArrayList<ItemsModel> items;
 
-    public DashboardPagerAdapter(Activity activity, ArrayList<ArgumentModel> arguments) {
+    public DashboardPagerAdapter(Activity activity, ArrayList<ItemsModel> items) {
         this.activity = activity;
-        this.arguments = arguments;
+        this.items = items;
         Resources resources = activity.getResources();
         titleList = new ArrayList<>(
                 Arrays.asList(
@@ -52,7 +52,7 @@ public class DashboardPagerAdapter extends PagerAdapter {
         View view = activity.getLayoutInflater().inflate(R.layout.pager_item, container, false);
         container.addView(view);
 
-        ListItemAdapter adapter = new ListItemAdapter(activity, R.layout.list_item, arguments);
+        ListItemAdapter adapter = new ListItemAdapter(activity, R.layout.list_item, items);
         ListView listView = (ListView) view.findViewById(R.id.pager_list_view);
         listView.setAdapter(adapter);
 

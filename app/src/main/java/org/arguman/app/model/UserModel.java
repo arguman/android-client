@@ -2,18 +2,30 @@ package org.arguman.app.model;
 
 import android.content.Context;
 
-import org.arguman.app.library.ObjectCache;
+import com.google.gson.annotations.SerializedName;
 
-import java.util.ArrayList;
+import org.arguman.app.library.ObjectCache;
 
 public class UserModel {
 
-    private int id;
-    private String username, email, password, avatar;
-    private ArrayList<UserModel> followingList, followerList;
     public static final String KEY = "user";
 
-    public UserModel() {
+    @SerializedName("id")
+    private int id;
+
+    @SerializedName("username")
+    private String username;
+
+    @SerializedName("absolute_url")
+    private String absolute_url;
+
+    @SerializedName("avatar")
+    private String avatar;
+
+    public UserModel() {}
+
+    public static String getKey() {
+        return KEY;
     }
 
     public int getId() {
@@ -32,20 +44,12 @@ public class UserModel {
         this.username = username;
     }
 
-    public String getEmail() {
-        return email;
+    public String getAbsolute_url() {
+        return absolute_url;
     }
 
-    public void setEmail(String email) {
-        this.email = email;
-    }
-
-    public String getPassword() {
-        return password;
-    }
-
-    public void setPassword(String password) {
-        this.password = password;
+    public void setAbsolute_url(String absolute_url) {
+        this.absolute_url = absolute_url;
     }
 
     public String getAvatar() {
@@ -54,22 +58,6 @@ public class UserModel {
 
     public void setAvatar(String avatar) {
         this.avatar = avatar;
-    }
-
-    public ArrayList<UserModel> getFollowingList() {
-        return followingList;
-    }
-
-    public void setFollowingList(ArrayList<UserModel> followingList) {
-        this.followingList = followingList;
-    }
-
-    public ArrayList<UserModel> getFollowerList() {
-        return followerList;
-    }
-
-    public void setFollowerList(ArrayList<UserModel> followerList) {
-        this.followerList = followerList;
     }
 
     // TODO: Move this functions to UserController as session state changes.
