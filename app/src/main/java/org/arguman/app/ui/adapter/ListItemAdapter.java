@@ -7,23 +7,22 @@ import android.view.ViewGroup;
 import android.widget.ArrayAdapter;
 
 import org.arguman.app.R;
-import org.arguman.app.model.ArgumentModel;
-import org.arguman.app.model.ContentionModel;
+import org.arguman.app.model.ItemsModel;
 import org.arguman.app.ui.view.ArgumanTextView;
 
 import java.util.ArrayList;
 
-public class ListItemAdapter extends ArrayAdapter<ArgumentModel> {
+public class ListItemAdapter extends ArrayAdapter<ItemsModel> {
 
-    private Context                  context;
-    private int                      resource;
-    private ArrayList<ArgumentModel> items;
+    private Context context;
+    private int resource;
+    private ArrayList<ItemsModel> items;
 
-    public ListItemAdapter(Context context, int resource, ArrayList<ArgumentModel> items) {
+    public ListItemAdapter(Context context, int resource, ArrayList<ItemsModel> items) {
         super(context, resource, items);
-        this.context  = context;
+        this.context = context;
         this.resource = resource;
-        this.items    = items;
+        this.items = items;
     }
 
     @Override
@@ -40,15 +39,16 @@ public class ListItemAdapter extends ArrayAdapter<ArgumentModel> {
         ArgumanTextView lastSender = (ArgumanTextView) view.findViewById(R.id.last_sender);
         ArgumanTextView time = (ArgumanTextView) view.findViewById(R.id.time);
 
-        // TODO: following line will be removed (temporary)
-        items.get(position).setContentionList(new ArrayList<ContentionModel>());
+        // TODO: following premise types hardcoded and will be changed after getting from api
+        because.setText("0");
+        but.setText("0");
+        however.setText("0");
 
-        because.setText(String.valueOf(items.get(position).getBecause()));
-        but.setText(String.valueOf(items.get(position).getBut()));
-        however.setText(String.valueOf(items.get(position).getHowever()));
         title.setText(items.get(position).getTitle());
-        lastSender.setText(context.getString(R.string.last_sender) + ": atkafasi");
-        time.setText(String.valueOf(items.get(position).getTimestamp()));
+        lastSender.setText(context.getString(R.string.last_sender) + ": " + items.get(position).getUser().getUsername());
+
+        // TODO: following timestamp hardcoded and will be changed after getting from api
+        time.setText("5 saat önce");
 
         return view;
     }

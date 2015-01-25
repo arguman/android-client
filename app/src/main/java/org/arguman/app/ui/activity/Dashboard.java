@@ -10,10 +10,12 @@ import android.support.v7.app.ActionBarActivity;
 import android.support.v7.widget.Toolbar;
 import android.text.Spannable;
 import android.text.SpannableString;
+import android.util.Log;
 import android.view.Menu;
 import android.view.MenuInflater;
 import android.view.MenuItem;
 import android.view.View;
+import android.view.Window;
 import android.widget.SearchView;
 import android.widget.TextView;
 
@@ -23,21 +25,29 @@ import com.getbase.floatingactionbutton.FloatingActionsMenu;
 import org.arguman.app.R;
 import org.arguman.app.controller.UserController;
 import org.arguman.app.library.TypefaceSpan;
-import org.arguman.app.model.ArgumentModel;
+import org.arguman.app.library.api.Client;
+import org.arguman.app.library.api.Response;
+import org.arguman.app.model.ItemsModel;
 import org.arguman.app.ui.adapter.DashboardPagerAdapter;
 import org.arguman.app.ui.adapter.SearchAdapter;
 import org.arguman.app.ui.view.SlidingTabLayout;
 
 import java.util.ArrayList;
 
+import retrofit.Callback;
+import retrofit.RetrofitError;
+
 public class Dashboard extends ActionBarActivity {
 
+    private static final String LOG_TAG = "Dashboard";
+
     private ViewPager viewPager;
+    private DashboardPagerAdapter adapter;
     private SlidingTabLayout slidingTabLayout;
     private Menu menu;
-    private ArrayList<ArgumentModel> arguments = new ArrayList<ArgumentModel>();
-    private ArrayList<String> argumentTitles = new ArrayList<String>();
-    private ArgumentModel argument;
+    private Client client = new Client();
+    private ArrayList<ItemsModel> items = new ArrayList<>();
+    private ArrayList<String> itemTitle = new ArrayList<>();
     private FloatingActionsMenu fabGroup;
     private View fabHighlight;
 
@@ -47,21 +57,20 @@ public class Dashboard extends ActionBarActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        supportRequestWindowFeature(Window.FEATURE_INDETERMINATE_PROGRESS);
         setContentView(R.layout.activity_main);
+
+        setSupportProgressBarIndeterminateVisibility(true);
 
         Toolbar toolbar = (Toolbar) findViewById(R.id.dashboard_toolbar);
         setSupportActionBar(toolbar);
 
-        // TODO: temporary -BEGIN-
-        getDummyData();
-        // TODO: temporary -END-
+        getData();
 
         fabHighlight = findViewById(R.id.highlight);
         fabGroup = (FloatingActionsMenu) findViewById(R.id.multiple_actions);
         viewPager = (ViewPager) findViewById(R.id.viewpager);
-        viewPager.setAdapter(new DashboardPagerAdapter(this, arguments));
         slidingTabLayout = (SlidingTabLayout) findViewById(R.id.tab_layout);
-        slidingTabLayout.setViewPager(viewPager);
         slidingTabLayout.setBackgroundColor(getResources().getColor(R.color.slider_tab_background));
         slidingTabLayout.setDividerColors(getResources().getColor(R.color.slider_tab_divider));
 
@@ -81,104 +90,26 @@ public class Dashboard extends ActionBarActivity {
         setFabs(loginState);
     }
 
-    private void getDummyData() {
+    private void getData() {
+        client.getServices().getItems(new Callback<Response>() {
+            @Override
+            public void success(Response response, retrofit.client.Response response2) {
+                items = (ArrayList<ItemsModel>) response.getItems();
+                loadData();
+            }
 
-        argument = new ArgumentModel();
+            @Override
+            public void failure(RetrofitError error) {
+                Log.d(LOG_TAG, error.getLocalizedMessage());
+            }
+        });
+    }
 
-        argument = new ArgumentModel();
-        argument.setTitle("Çağdaşlık söylemi sosyal darwinistliktir.");
-        argument.setTimestamp(20151701035533l);
-        arguments.add(argument);
-
-        argument = new ArgumentModel();
-        argument.setTitle("Kedilerin nankör olduğu büyük bir yalandır");
-        argument.setTimestamp(20151701035533l);
-        arguments.add(argument);
-
-        argument = new ArgumentModel();
-        argument.setTitle("Sosyalizmin önündeki en büyük engel işçi sınıfıdır");
-        argument.setTimestamp(20151701035533l);
-        arguments.add(argument);
-
-        argument = new ArgumentModel();
-        argument.setTitle("insanlar urettikleri kadar degerlidir.");
-        argument.setTimestamp(20151701035533l);
-        arguments.add(argument);
-
-        argument = new ArgumentModel();
-        argument.setTitle("İletişim süreçlerinde başarılı olmak isteyen markalar için sosyal medya kullanımı artık bir zorunluluktur.");
-        argument.setTimestamp(20151701035533l);
-        arguments.add(argument);
-
-        argument = new ArgumentModel();
-        argument.setTitle("Bir gün herkes Google Glass kullanacak ve bu bir ihtiyaç halini alacak.");
-        argument.setTimestamp(20151701035533l);
-        arguments.add(argument);
-
-        argument = new ArgumentModel();
-        argument.setTitle("Para kazanmak amaç ise hırsızlık bir meslektir");
-        argument.setTimestamp(20151701035533l);
-        arguments.add(argument);
-
-        argument = new ArgumentModel();
-        argument.setTitle("Giyilebilir teknolojiler çağın gerisindedir");
-        argument.setTimestamp(20151701035533l);
-        arguments.add(argument);
-
-        argument = new ArgumentModel();
-        argument.setTitle("Sosyal Devlet Halkı Tembelleştirir");
-        argument.setTimestamp(20151701035533l);
-        arguments.add(argument);
-
-        argument = new ArgumentModel();
-        argument.setTitle("Hıçkırık tutunca ne yapsan nafile,geçmiyor.");
-        argument.setTimestamp(20151701035533l);
-        arguments.add(argument);
-
-        argument = new ArgumentModel();
-        argument.setTitle("İslam filozofları gerçek manada felsefe yapamamaktadır");
-        argument.setTimestamp(20151701035533l);
-        arguments.add(argument);
-
-        argument = new ArgumentModel();
-        argument.setTitle("Tesadüf diye bir şey yoktur.");
-        argument.setTimestamp(20151701035533l);
-        arguments.add(argument);
-
-        argument = new ArgumentModel();
-        argument.setTitle("Oksijenle temas eden herşey bozulmaya ve çürümeye mahkumdur");
-        argument.setTimestamp(20151701035533l);
-        arguments.add(argument);
-
-        argument = new ArgumentModel();
-        argument.setTitle("Dropshipping bir aldatmacadır.");
-        argument.setTimestamp(20151701035533l);
-        arguments.add(argument);
-
-        argument = new ArgumentModel();
-        argument.setTitle("Content Marketing gelecekte en önemli pazarlama süreci olacaktır.");
-        argument.setTimestamp(20151701035533l);
-        arguments.add(argument);
-
-        argument = new ArgumentModel();
-        argument.setTitle("İstanbul dünyanın en güzel şehridir.");
-        argument.setTimestamp(20151701035533l);
-        arguments.add(argument);
-
-        argument = new ArgumentModel();
-        argument.setTitle("Üniversite okumak pişmanlıktır.");
-        argument.setTimestamp(20151701035533l);
-        arguments.add(argument);
-
-        argument = new ArgumentModel();
-        argument.setTitle("Hamal olmaya gerek yok");
-        argument.setTimestamp(20151701035533l);
-        arguments.add(argument);
-
-        argument = new ArgumentModel();
-        argument.setTitle("Arap Baharı henüz başarıya ulaşmadığı halde ciddi bir değişim dinamiği ortaya çıkarmıştır.");
-        argument.setTimestamp(20151701035533l);
-        arguments.add(argument);
+    private void loadData() {
+        adapter = new DashboardPagerAdapter(this, items);
+        viewPager.setAdapter(adapter);
+        slidingTabLayout.setViewPager(viewPager);
+        setSupportProgressBarIndeterminateVisibility(false);
     }
 
     @Override
@@ -213,16 +144,16 @@ public class Dashboard extends ActionBarActivity {
         String[] columns = new String[]{"_id", "text"};
         Object[] temp = new Object[]{0, "default"};
         MatrixCursor cursor = new MatrixCursor(columns);
-        argumentTitles = new ArrayList<String>();
-        for (int i = 0; i < arguments.size(); i++) {
+        itemTitle = new ArrayList<String>();
+        for (int i = 0; i < items.size(); i++) {
             temp[0] = i;
-            temp[1] = arguments.get(i).getTitle();
-            if (arguments.get(i).getTitle().toLowerCase().contains(s.toLowerCase())) {
-                argumentTitles.add(arguments.get(i).getTitle());
+            temp[1] = items.get(i).getTitle();
+            if (items.get(i).getTitle().toLowerCase().contains(s.toLowerCase())) {
+                itemTitle.add(items.get(i).getTitle());
                 cursor.addRow(temp);
             }
         }
-        searchView.setSuggestionsAdapter(new SearchAdapter(this, cursor, argumentTitles));
+        searchView.setSuggestionsAdapter(new SearchAdapter(this, cursor, itemTitle));
     }
 
     @Override
