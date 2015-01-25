@@ -65,6 +65,7 @@ public class Dashboard extends ActionBarActivity {
         Toolbar toolbar = (Toolbar) findViewById(R.id.dashboard_toolbar);
         setSupportActionBar(toolbar);
 
+        // TODO: add a loading zimbirti here
         getData();
 
         fabHighlight = findViewById(R.id.highlight);
