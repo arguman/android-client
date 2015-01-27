@@ -1,4 +1,4 @@
-package org.arguman.app;
+package org.arguman.app.application;
 
 import android.app.Application;
 import android.content.res.Configuration;
@@ -7,12 +7,14 @@ import com.crashlytics.android.Crashlytics;
 
 import org.arguman.app.controller.UserController;
 import org.arguman.app.library.ObjectCache;
+import org.arguman.app.rest.ArgumanClient;
 
 import io.fabric.sdk.android.Fabric;
 
 public class At extends Application {
 
     private static At at;
+    private static ArgumanClient argumanClient;
 
     public At getInstance() {
         return at;
@@ -23,10 +25,11 @@ public class At extends Application {
         super.onCreate();
         Fabric.with(this, new Crashlytics());
         at = this;
-        initSingletons();
+        initialize();
     }
 
-    private void initSingletons() {
+    private void initialize() {
+        argumanClient = new ArgumanClient();
         ObjectCache.getInstance(getApplicationContext());
         UserController.getInstance(getApplicationContext()).initializeSession();
     }
