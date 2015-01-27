@@ -1,4 +1,4 @@
-package org.arguman.app.library.api;
+package org.arguman.app.rest.model;
 
 import com.google.gson.annotations.SerializedName;
 
@@ -11,7 +11,8 @@ public class Response {
     @SerializedName("results")
     private List<ItemsModel> items;
 
-    public Response() {}
+    public Response() {
+    }
 
     public List<ItemsModel> getItems() {
         return items;

@@ -25,8 +25,8 @@ import com.getbase.floatingactionbutton.FloatingActionsMenu;
 import org.arguman.app.R;
 import org.arguman.app.controller.UserController;
 import org.arguman.app.library.TypefaceSpan;
-import org.arguman.app.library.api.Client;
-import org.arguman.app.library.api.Response;
+import org.arguman.app.rest.ArgumanClient;
+import org.arguman.app.rest.model.Response;
 import org.arguman.app.model.ItemsModel;
 import org.arguman.app.ui.adapter.DashboardPagerAdapter;
 import org.arguman.app.ui.adapter.SearchAdapter;
@@ -44,8 +44,7 @@ public class Dashboard extends ActionBarActivity {
     private ViewPager viewPager;
     private DashboardPagerAdapter adapter;
     private SlidingTabLayout slidingTabLayout;
-    private Menu menu;
-    private Client client = new Client();
+    private ArgumanClient argumanClient = new ArgumanClient();
     private ArrayList<ItemsModel> items = new ArrayList<>();
     private ArrayList<String> itemTitle = new ArrayList<>();
     private FloatingActionsMenu fabGroup;
@@ -65,6 +64,7 @@ public class Dashboard extends ActionBarActivity {
         Toolbar toolbar = (Toolbar) findViewById(R.id.dashboard_toolbar);
         setSupportActionBar(toolbar);
 
+        // TODO: add a loading zimbirti here
         getData();
 
         fabHighlight = findViewById(R.id.highlight);
@@ -91,7 +91,7 @@ public class Dashboard extends ActionBarActivity {
     }
 
     private void getData() {
-        client.getServices().getItems(new Callback<Response>() {
+        argumanClient.getPremiseService().getPremises(new Callback<Response>() {
             @Override
             public void success(Response response, retrofit.client.Response response2) {
                 items = (ArrayList<ItemsModel>) response.getItems();
@@ -116,7 +116,6 @@ public class Dashboard extends ActionBarActivity {
     public boolean onCreateOptionsMenu(Menu menu) {
         MenuInflater inflater = getMenuInflater();
         inflater.inflate(R.menu.menu_main, menu);
-        this.menu = menu;
 
         View notificationsItemView = menu.findItem(R.id.action_notifications).getActionView();
         ((TextView) notificationsItemView.findViewById(R.id.item_title)).setText(String.valueOf(2));
