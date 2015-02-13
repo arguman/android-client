@@ -4,9 +4,9 @@ import com.google.gson.annotations.SerializedName;
 
 import java.util.List;
 
-public class ItemsModel {
+public class ArgumentsModel {
 
-    public static final String KEY = "items";
+    public static final String KEY = "arguments";
 
     @SerializedName("id")
     private int id;
@@ -32,13 +32,35 @@ public class ItemsModel {
     @SerializedName("premises")
     private List<PremisesModel> premises;
 
+    @SerializedName("date_creation")
+    private String date_creation;
+
     @SerializedName("absolute_url")
     private String absolute_url;
 
     @SerializedName("report_count")
     private int report_count;
 
-    public ItemsModel() {}
+    @SerializedName("is_featured")
+    private boolean is_featured;
+
+    public ArgumentsModel() {
+    }
+
+    public ArgumentsModel(int id, UserModel user, String title, String slug, String description, String owner, String sources, List<PremisesModel> premises, String date_creation, String absolute_url, int report_count, boolean is_featured) {
+        this.id = id;
+        this.user = user;
+        this.title = title;
+        this.slug = slug;
+        this.description = description;
+        this.owner = owner;
+        this.sources = sources;
+        this.premises = premises;
+        this.date_creation = date_creation;
+        this.absolute_url = absolute_url;
+        this.report_count = report_count;
+        this.is_featured = is_featured;
+    }
 
     public static String getKey() {
         return KEY;
@@ -108,6 +130,14 @@ public class ItemsModel {
         this.premises = premises;
     }
 
+    public String getDate_creation() {
+        return date_creation;
+    }
+
+    public void setDate_creation(String date_creation) {
+        this.date_creation = date_creation;
+    }
+
     public String getAbsolute_url() {
         return absolute_url;
     }
@@ -122,6 +152,14 @@ public class ItemsModel {
 
     public void setReport_count(int report_count) {
         this.report_count = report_count;
+    }
+
+    public boolean isIs_featured() {
+        return is_featured;
+    }
+
+    public void setIs_featured(boolean is_featured) {
+        this.is_featured = is_featured;
     }
 
 }

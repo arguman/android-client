@@ -22,7 +22,15 @@ public class UserModel {
     @SerializedName("avatar")
     private String avatar;
 
-    public UserModel() {}
+    public UserModel() {
+    }
+
+    public UserModel(int id, String username, String absolute_url, String avatar) {
+        this.id = id;
+        this.username = username;
+        this.absolute_url = absolute_url;
+        this.avatar = avatar;
+    }
 
     public static String getKey() {
         return KEY;

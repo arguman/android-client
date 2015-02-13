@@ -25,9 +25,9 @@ import com.getbase.floatingactionbutton.FloatingActionsMenu;
 import org.arguman.app.R;
 import org.arguman.app.controller.UserController;
 import org.arguman.app.library.TypefaceSpan;
-import org.arguman.app.rest.ArgumanClient;
-import org.arguman.app.rest.model.Response;
+import org.arguman.app.model.ArgumentsModel;
 import org.arguman.app.model.ItemsModel;
+import org.arguman.app.rest.ArgumanClient;
 import org.arguman.app.ui.adapter.DashboardPagerAdapter;
 import org.arguman.app.ui.adapter.SearchAdapter;
 import org.arguman.app.ui.view.SlidingTabLayout;
@@ -36,6 +36,7 @@ import java.util.ArrayList;
 
 import retrofit.Callback;
 import retrofit.RetrofitError;
+import retrofit.client.Response;
 
 public class Dashboard extends ActionBarActivity {
 
@@ -45,7 +46,7 @@ public class Dashboard extends ActionBarActivity {
     private DashboardPagerAdapter adapter;
     private SlidingTabLayout slidingTabLayout;
     private ArgumanClient argumanClient = new ArgumanClient();
-    private ArrayList<ItemsModel> items = new ArrayList<>();
+    private ArrayList<ArgumentsModel> items = new ArrayList<>();
     private ArrayList<String> itemTitle = new ArrayList<>();
     private FloatingActionsMenu fabGroup;
     private View fabHighlight;
@@ -91,10 +92,10 @@ public class Dashboard extends ActionBarActivity {
     }
 
     private void getData() {
-        argumanClient.getPremiseService().getPremises(new Callback<Response>() {
+        argumanClient.getArgumentService().getArguments(new Callback<ItemsModel>() {
             @Override
-            public void success(Response response, retrofit.client.Response response2) {
-                items = (ArrayList<ItemsModel>) response.getItems();
+            public void success(ItemsModel itemsModel, Response response) {
+                items = (ArrayList<ArgumentsModel>) itemsModel.getResults();
                 loadData();
             }
 
