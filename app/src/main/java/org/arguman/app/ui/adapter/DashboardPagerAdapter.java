@@ -3,12 +3,14 @@ package org.arguman.app.ui.adapter;
 import android.app.Activity;
 import android.content.res.Resources;
 import android.support.v4.view.PagerAdapter;
+import android.support.v4.widget.SwipeRefreshLayout;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ListView;
 
 import org.arguman.app.R;
-import org.arguman.app.model.ItemsModel;
+import org.arguman.app.model.ArgumentsModel;
+import org.arguman.app.rest.ArgumanClient;
 
 import java.util.ArrayList;
 import java.util.Arrays;
@@ -18,9 +20,13 @@ public class DashboardPagerAdapter extends PagerAdapter {
 
     private Activity activity;
     private List<String> titleList;
-    private ArrayList<ItemsModel> items;
+    private ArrayList<ArgumentsModel> items;
+    private ListItemAdapter adapter;
+    private ListView listView;
+    private SwipeRefreshLayout swipeRefreshLayout;
+    private ArgumanClient client = new ArgumanClient();
 
-    public DashboardPagerAdapter(Activity activity, ArrayList<ItemsModel> items) {
+    public DashboardPagerAdapter(Activity activity, ArrayList<ArgumentsModel> items) {
         this.activity = activity;
         this.items = items;
         Resources resources = activity.getResources();
@@ -52,9 +58,27 @@ public class DashboardPagerAdapter extends PagerAdapter {
         View view = activity.getLayoutInflater().inflate(R.layout.pager_item, container, false);
         container.addView(view);
 
-        ListItemAdapter adapter = new ListItemAdapter(activity, R.layout.list_item, items);
-        ListView listView = (ListView) view.findViewById(R.id.pager_list_view);
+        adapter = new ListItemAdapter(activity, R.layout.list_item, items);
+        listView = (ListView) view.findViewById(R.id.pager_list_view);
         listView.setAdapter(adapter);
+
+//        swipeRefreshLayout = (SwipeRefreshLayout) view.findViewById(R.id.swipe_refresh_layout);
+//        swipeRefreshLayout.setOnRefreshListener(new SwipeRefreshLayout.OnRefreshListener() {
+//            @Override
+//            public void onRefresh() {
+//                client.getArgumentService().getPremises(new Callback<Response>() {
+//                    @Override
+//                    public void success(Response response, retrofit.client.Response response2) {
+//                        Log.d("atkafasi", response.getItems().get(0).getTitle());
+//                    }
+//
+//                    @Override
+//                    public void failure(RetrofitError error) {
+//
+//                    }
+//                });
+//            }
+//        });
 
         return view;
     }
