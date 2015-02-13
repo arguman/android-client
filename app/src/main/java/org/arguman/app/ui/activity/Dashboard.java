@@ -1,10 +1,12 @@
 package org.arguman.app.ui.activity;
 
+import android.app.ProgressDialog;
 import android.app.SearchManager;
 import android.content.Context;
 import android.database.MatrixCursor;
 import android.os.Bundle;
 import android.support.v4.view.ViewPager;
+import android.support.v4.widget.SwipeRefreshLayout;
 import android.support.v7.app.ActionBar;
 import android.support.v7.app.ActionBarActivity;
 import android.support.v7.widget.Toolbar;
@@ -15,7 +17,6 @@ import android.view.Menu;
 import android.view.MenuInflater;
 import android.view.MenuItem;
 import android.view.View;
-import android.view.Window;
 import android.widget.SearchView;
 import android.widget.TextView;
 
@@ -25,9 +26,9 @@ import com.getbase.floatingactionbutton.FloatingActionsMenu;
 import org.arguman.app.R;
 import org.arguman.app.controller.UserController;
 import org.arguman.app.library.TypefaceSpan;
-import org.arguman.app.rest.ArgumanClient;
-import org.arguman.app.rest.model.Response;
+import org.arguman.app.model.ArgumentsModel;
 import org.arguman.app.model.ItemsModel;
+import org.arguman.app.rest.ArgumanClient;
 import org.arguman.app.ui.adapter.DashboardPagerAdapter;
 import org.arguman.app.ui.adapter.SearchAdapter;
 import org.arguman.app.ui.view.SlidingTabLayout;
@@ -36,6 +37,7 @@ import java.util.ArrayList;
 
 import retrofit.Callback;
 import retrofit.RetrofitError;
+import retrofit.client.Response;
 
 public class Dashboard extends ActionBarActivity {
 
@@ -45,10 +47,12 @@ public class Dashboard extends ActionBarActivity {
     private DashboardPagerAdapter adapter;
     private SlidingTabLayout slidingTabLayout;
     private ArgumanClient argumanClient = new ArgumanClient();
-    private ArrayList<ItemsModel> items = new ArrayList<>();
+    private ArrayList<ArgumentsModel> items = new ArrayList<>();
     private ArrayList<String> itemTitle = new ArrayList<>();
     private FloatingActionsMenu fabGroup;
     private View fabHighlight;
+    private ProgressDialog progressDialog;
+    private SwipeRefreshLayout swipeRefreshLayout;
 
     private SearchManager searchManager;
     private SearchView searchView;
@@ -56,15 +60,15 @@ public class Dashboard extends ActionBarActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        supportRequestWindowFeature(Window.FEATURE_INDETERMINATE_PROGRESS);
         setContentView(R.layout.activity_main);
-
-        setSupportProgressBarIndeterminateVisibility(true);
 
         Toolbar toolbar = (Toolbar) findViewById(R.id.dashboard_toolbar);
         setSupportActionBar(toolbar);
 
-        // TODO: add a loading zimbirti here
+        progressDialog = new ProgressDialog(this);
+        progressDialog.setMessage(getString(R.string.loading));
+        progressDialog.show();
+
         getData();
 
         fabHighlight = findViewById(R.id.highlight);
@@ -91,16 +95,28 @@ public class Dashboard extends ActionBarActivity {
     }
 
     private void getData() {
-        argumanClient.getPremiseService().getPremises(new Callback<Response>() {
+        argumanClient.getArgumentService().getArguments(new Callback<ItemsModel>() {
             @Override
-            public void success(Response response, retrofit.client.Response response2) {
-                items = (ArrayList<ItemsModel>) response.getItems();
+            public void success(ItemsModel itemsModel, Response response) {
+                items = (ArrayList<ArgumentsModel>) itemsModel.getResults();
                 loadData();
+                if (progressDialog.isIndeterminate()) {
+                    progressDialog.dismiss();
+                }
+                if (swipeRefreshLayout.isRefreshing()) {
+                    swipeRefreshLayout.setRefreshing(false);
+                }
             }
 
             @Override
             public void failure(RetrofitError error) {
                 Log.d(LOG_TAG, error.getLocalizedMessage());
+                if (progressDialog.isIndeterminate()) {
+                    progressDialog.dismiss();
+                }
+                if (swipeRefreshLayout.isRefreshing()) {
+                    swipeRefreshLayout.setRefreshing(false);
+                }
             }
         });
     }
@@ -109,7 +125,13 @@ public class Dashboard extends ActionBarActivity {
         adapter = new DashboardPagerAdapter(this, items);
         viewPager.setAdapter(adapter);
         slidingTabLayout.setViewPager(viewPager);
-        setSupportProgressBarIndeterminateVisibility(false);
+        swipeRefreshLayout = (SwipeRefreshLayout) findViewById(R.id.swipe_refresh_layout);
+        swipeRefreshLayout.setOnRefreshListener(new SwipeRefreshLayout.OnRefreshListener() {
+            @Override
+            public void onRefresh() {
+                getData();
+            }
+        });
     }
 
     @Override
