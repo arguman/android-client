@@ -43,6 +43,7 @@ dependencies {
     compile 'com.squareup.okhttp:okhttp-urlconnection:2.0.0'
     compile 'com.squareup.okhttp:okhttp:2.0.0'
     compile 'com.google.code.gson:gson:2.2.+'
+    compile 'com.github.amlcurran.showcaseview:library:5.0.0'
     compile('com.crashlytics.sdk.android:crashlytics:2.2.0@aar') {
         transitive = true;
     }

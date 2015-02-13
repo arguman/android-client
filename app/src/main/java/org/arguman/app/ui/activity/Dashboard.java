@@ -1,10 +1,12 @@
 package org.arguman.app.ui.activity;
 
+import android.app.ProgressDialog;
 import android.app.SearchManager;
 import android.content.Context;
 import android.database.MatrixCursor;
 import android.os.Bundle;
 import android.support.v4.view.ViewPager;
+import android.support.v4.widget.SwipeRefreshLayout;
 import android.support.v7.app.ActionBar;
 import android.support.v7.app.ActionBarActivity;
 import android.support.v7.widget.Toolbar;
@@ -15,7 +17,6 @@ import android.view.Menu;
 import android.view.MenuInflater;
 import android.view.MenuItem;
 import android.view.View;
-import android.view.Window;
 import android.widget.SearchView;
 import android.widget.TextView;
 
@@ -50,6 +51,8 @@ public class Dashboard extends ActionBarActivity {
     private ArrayList<String> itemTitle = new ArrayList<>();
     private FloatingActionsMenu fabGroup;
     private View fabHighlight;
+    private ProgressDialog progressDialog;
+    private SwipeRefreshLayout swipeRefreshLayout;
 
     private SearchManager searchManager;
     private SearchView searchView;
@@ -57,15 +60,15 @@ public class Dashboard extends ActionBarActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        supportRequestWindowFeature(Window.FEATURE_INDETERMINATE_PROGRESS);
         setContentView(R.layout.activity_main);
-
-        setSupportProgressBarIndeterminateVisibility(true);
 
         Toolbar toolbar = (Toolbar) findViewById(R.id.dashboard_toolbar);
         setSupportActionBar(toolbar);
 
-        // TODO: add a loading zimbirti here
+        progressDialog = new ProgressDialog(this);
+        progressDialog.setMessage(getString(R.string.loading));
+        progressDialog.show();
+
         getData();
 
         fabHighlight = findViewById(R.id.highlight);
@@ -97,11 +100,23 @@ public class Dashboard extends ActionBarActivity {
             public void success(ItemsModel itemsModel, Response response) {
                 items = (ArrayList<ArgumentsModel>) itemsModel.getResults();
                 loadData();
+                if (progressDialog.isIndeterminate()) {
+                    progressDialog.dismiss();
+                }
+                if (swipeRefreshLayout.isRefreshing()) {
+                    swipeRefreshLayout.setRefreshing(false);
+                }
             }
 
             @Override
             public void failure(RetrofitError error) {
                 Log.d(LOG_TAG, error.getLocalizedMessage());
+                if (progressDialog.isIndeterminate()) {
+                    progressDialog.dismiss();
+                }
+                if (swipeRefreshLayout.isRefreshing()) {
+                    swipeRefreshLayout.setRefreshing(false);
+                }
             }
         });
     }
@@ -110,7 +125,13 @@ public class Dashboard extends ActionBarActivity {
         adapter = new DashboardPagerAdapter(this, items);
         viewPager.setAdapter(adapter);
         slidingTabLayout.setViewPager(viewPager);
-        setSupportProgressBarIndeterminateVisibility(false);
+        swipeRefreshLayout = (SwipeRefreshLayout) findViewById(R.id.swipe_refresh_layout);
+        swipeRefreshLayout.setOnRefreshListener(new SwipeRefreshLayout.OnRefreshListener() {
+            @Override
+            public void onRefresh() {
+                getData();
+            }
+        });
     }
 
     @Override

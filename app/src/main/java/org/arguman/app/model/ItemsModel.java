@@ -6,64 +6,122 @@ import java.util.List;
 
 public class ItemsModel {
 
-    private static final String KEY = "items";
+    public static final String KEY = "items";
 
-    @SerializedName("count")
-    private int count;
+    @SerializedName("id")
+    private int id;
 
-    @SerializedName("next")
-    private String next;
+    @SerializedName("user")
+    private UserModel user;
 
-    @SerializedName("previous")
-    private String previous;
+    @SerializedName("title")
+    private String title;
 
-    @SerializedName("results")
-    private List<ArgumentsModel> results;
+    @SerializedName("slug")
+    private String slug;
 
-    public ItemsModel() {
-    }
+    @SerializedName("description")
+    private String description;
 
-    public ItemsModel(int count, String next, String previous, List<ArgumentsModel> results) {
-        this.count = count;
-        this.next = next;
-        this.previous = previous;
-        this.results = results;
-    }
+    @SerializedName("owner")
+    private String owner;
+
+    @SerializedName("sources")
+    private String sources;
+
+    @SerializedName("premises")
+    private List<PremisesModel> premises;
+
+    @SerializedName("absolute_url")
+    private String absolute_url;
+
+    @SerializedName("report_count")
+    private int report_count;
+
+    public ItemsModel() {}
 
     public static String getKey() {
         return KEY;
     }
 
-    public int getCount() {
-        return count;
+    public int getId() {
+        return id;
     }
 
-    public void setCount(int count) {
-        this.count = count;
+    public void setId(int id) {
+        this.id = id;
     }
 
-    public String getNext() {
-        return next;
+    public UserModel getUser() {
+        return user;
     }
 
-    public void setNext(String next) {
-        this.next = next;
+    public void setUser(UserModel user) {
+        this.user = user;
     }
 
-    public String getPrevious() {
-        return previous;
+    public String getTitle() {
+        return title;
     }
 
-    public void setPrevious(String previous) {
-        this.previous = previous;
+    public void setTitle(String title) {
+        this.title = title;
     }
 
-    public List<ArgumentsModel> getResults() {
-        return results;
+    public String getSlug() {
+        return slug;
     }
 
-    public void setResults(List<ArgumentsModel> results) {
-        this.results = results;
+    public void setSlug(String slug) {
+        this.slug = slug;
+    }
+
+    public String getDescription() {
+        return description;
+    }
+
+    public void setDescription(String description) {
+        this.description = description;
+    }
+
+    public String getOwner() {
+        return owner;
+    }
+
+    public void setOwner(String owner) {
+        this.owner = owner;
+    }
+
+    public String getSources() {
+        return sources;
+    }
+
+    public void setSources(String sources) {
+        this.sources = sources;
+    }
+
+    public List<PremisesModel> getPremises() {
+        return premises;
+    }
+
+    public void setPremises(List<PremisesModel> premises) {
+        this.premises = premises;
+    }
+
+    public String getAbsolute_url() {
+        return absolute_url;
+    }
+
+    public void setAbsolute_url(String absolute_url) {
+        this.absolute_url = absolute_url;
+    }
+
+    public int getReport_count() {
+        return report_count;
+    }
+
+    public void setReport_count(int report_count) {
+        this.report_count = report_count;
     }
 
 }
