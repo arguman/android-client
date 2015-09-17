@@ -5,9 +5,9 @@ import org.arguman.app.rest.model.Response;
 import retrofit.Callback;
 import retrofit.http.GET;
 
-public interface PremiseService {
+public interface ArgumentService {
 
-    @GET("/premises")
-    public void getPremises(Callback<Response> callback);
+    @GET("/arguments")
+    public void getArguments(Callback<Response> callback);
 
 }
