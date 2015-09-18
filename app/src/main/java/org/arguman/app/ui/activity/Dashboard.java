@@ -51,6 +51,7 @@ public class Dashboard extends ActionBarActivity {
     private FloatingActionsMenu fabGroup;
     private View fabHighlight;
     private ProgressDialog progressDialog;
+    // TODO: Swipe to refresh commented out. It must be added.
     private SwipeRefreshLayout swipeRefreshLayout;
 
     private SearchManager searchManager;

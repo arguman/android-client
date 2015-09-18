@@ -27,7 +27,7 @@ public class PremisesModel {
     private String absolute_url;
 
     @SerializedName("premise_type")
-    private String premise_type;
+    private int premise_type;
 
     @SerializedName("date_creation")
     private String date_creation;
@@ -89,11 +89,11 @@ public class PremisesModel {
         this.absolute_url = absolute_url;
     }
 
-    public String getPremise_type() {
+    public int getPremise_type() {
         return premise_type;
     }
 
-    public void setPremise_type(String premise_type) {
+    public void setPremise_type(int premise_type) {
         this.premise_type = premise_type;
     }
 

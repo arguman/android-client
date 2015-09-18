@@ -32,5 +32,6 @@
     <string name="timestamp_months_ago">months ago</string>
     <string name="timestamp_last_year">last year</string>
     <string name="timestamp_years_ago">years ago</string>
+    <string name="title_activity_argument_detail">ArgumentDetail</string>
 
 </resources>
