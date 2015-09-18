@@ -1,4 +1,4 @@
 <menu xmlns:tools="http://schemas.android.com/tools"
-    tools:context="org.arguman.app.ui.activity.ArgumentDetail">
+    tools:context="org.arguman.app.ui.activity.ArgumentDetails">
 
 </menu>

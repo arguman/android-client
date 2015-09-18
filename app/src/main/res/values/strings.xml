@@ -33,5 +33,14 @@
     <string name="timestamp_last_year">last year</string>
     <string name="timestamp_years_ago">years ago</string>
     <string name="title_activity_argument_detail">ArgumentDetail</string>
+    
+    <string name="premise_type_because">because</string>
+    <string name="premise_type_but">but</string>
+    <string name="premise_type_however">however</string>
+
+    <string name="premise_sender">sender</string>
+    <string name="premise_fallacy">fallacy</string>
+    <string name="premise_support">support</string>
+    <string name="premise_send_premise">send premise</string>
 
 </resources>

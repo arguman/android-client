@@ -34,7 +34,7 @@
             android:value="15166b1b76173d2a37da2c828d60492f5027c5bc" />
 
         <activity
-            android:name=".ui.activity.ArgumentDetail"
+            android:name=".ui.activity.ArgumentDetails"
             android:label="@string/title_activity_argument_detail" >
         </activity>
     </application>

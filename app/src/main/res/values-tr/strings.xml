@@ -32,5 +32,14 @@
     <string name="timestamp_months_ago">ay önce</string>
     <string name="timestamp_years_ago">yıl önce</string>
     <string name="timestamp_yesterday">dün</string>
+
+    <string name="premise_type_because">çünkü</string>
+    <string name="premise_type_but">ama</string>
+    <string name="premise_type_however">ancak</string>
+
+    <string name="premise_sender">gönderen</string>
+    <string name="premise_fallacy">safsata bildir</string>
+    <string name="premise_support">destekle</string>
+    <string name="premise_send_premise">önerme gönder</string>
     
 </resources>

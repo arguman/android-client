@@ -29,8 +29,11 @@
 
     <color name="app_color">#fff8b2</color>
     <color name="green">#93eeac</color>
+    <color name="dark_green">#378a4f</color>
     <color name="red">#e89ea6</color>
-    <color name="yellow">#e8b06b</color>
+    <color name="dark_red">#7c353d</color>
+    <color name="yellow">#fff1a4</color>
+    <color name="dark_yellow">#a99b4f</color>
     <color name="gray_background">#e3e3e5</color>
 
 </resources>

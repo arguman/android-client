@@ -1,0 +1,73 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:id="@+id/premise_container"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:padding="10dp"
+    android:layout_below="@+id/title">
+
+    <org.arguman.app.ui.view.ArgumanTextView
+        android:id="@+id/premise_type"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textSize="18sp"
+        android:textColor="@color/dark_green"
+        android:text="[premise_type]"/>
+
+    <TextView
+        android:id="@+id/premise"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@color/green"
+        android:padding="10dp"
+        android:textColor="#000"
+        android:layout_below="@+id/premise_type"
+        android:text="[premise]"/>
+
+    <org.arguman.app.ui.view.ArgumanTextView
+        android:id="@+id/sender"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@color/gray_background"
+        android:padding="10dp"
+        android:textColor="#000"
+        android:layout_below="@+id/premise"
+        android:text="@string/premise_sender"/>
+
+    <RelativeLayout
+        android:id="@+id/premise_buttons"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="#d6d6d6"
+        android:layout_below="@+id/sender">
+
+        <org.arguman.app.ui.view.ArgumanTextView
+            android:id="@+id/btn_fallacy"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:padding="10dp"
+            android:textColor="#000"
+            android:layout_alignParentLeft="true"
+            android:text="@string/premise_fallacy"/>
+
+        <org.arguman.app.ui.view.ArgumanTextView
+            android:id="@+id/btn_support"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:padding="10dp"
+            android:textColor="#000"
+            android:layout_centerInParent="true"
+            android:text="@string/premise_support"/>
+
+        <org.arguman.app.ui.view.ArgumanTextView
+            android:id="@+id/btn_send_premise"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:padding="10dp"
+            android:textColor="#000"
+            android:layout_alignParentRight="true"
+            android:text="@string/premise_send_premise"/>
+
+    </RelativeLayout>
+
+</RelativeLayout>

@@ -1,6 +1,7 @@
 package org.arguman.app.ui.adapter;
 
 import android.content.Context;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -37,7 +38,7 @@ public class ListItemAdapter extends ArrayAdapter<ItemsModel> {
         ArgumanTextView lastSender = (ArgumanTextView) view.findViewById(R.id.last_sender);
         ArgumanTextView time = (ArgumanTextView) view.findViewById(R.id.time);
 
-        // Counts of premise types:
+        // Calculating counts of premise types:
         int because_count = 0;
         int but_count = 0;
         int however_count = 0;
@@ -52,7 +53,6 @@ public class ListItemAdapter extends ArrayAdapter<ItemsModel> {
             }
         }
 
-        // TODO: following premise types hardcoded and will be changed after getting from api
         because.setText(String.valueOf(because_count));
         but.setText(String.valueOf(but_count));
         however.setText(String.valueOf(however_count));
@@ -64,6 +64,10 @@ public class ListItemAdapter extends ArrayAdapter<ItemsModel> {
         time.setText("5 saat önce");
 
         return view;
+    }
+
+    public ItemsModel getArgument(int position) {
+        return items.get(position);
     }
 
 }
