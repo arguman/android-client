@@ -11,13 +11,18 @@ import android.text.SpannableString;
 import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.widget.ListView;
 import android.widget.Toast;
 
 import org.arguman.app.R;
 import org.arguman.app.library.ObjectCache;
 import org.arguman.app.library.TypefaceSpan;
 import org.arguman.app.model.ItemsModel;
+import org.arguman.app.model.PremisesModel;
+import org.arguman.app.ui.adapter.PremiseItemAdapter;
 import org.arguman.app.ui.view.ArgumanTextView;
+
+import java.util.ArrayList;
 
 public class ArgumentDetails extends ActionBarActivity {
 
@@ -27,6 +32,8 @@ public class ArgumentDetails extends ActionBarActivity {
     private ItemsModel argument;
 
     private ArgumanTextView tvTitle;
+    private ListView premiseList;
+    private PremiseItemAdapter adapter;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -55,6 +62,11 @@ public class ArgumentDetails extends ActionBarActivity {
     private void initialize() {
         tvTitle = (ArgumanTextView) activity.findViewById(R.id.title);
         tvTitle.setText(argument.getTitle());
+
+        premiseList = (ListView) activity.findViewById(R.id.premise_list);
+        premiseList.setDividerHeight(0);
+        adapter = new PremiseItemAdapter(context, R.layout.premise_item, (ArrayList<PremisesModel>) argument.getPremises());
+        premiseList.setAdapter(adapter);
     }
 
     @Override

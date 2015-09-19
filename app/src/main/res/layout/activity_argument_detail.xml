@@ -13,27 +13,21 @@
         android:background="?attr/colorPrimary"
         app:theme="@style/AppTheme.ArgumanActionBar" />
 
-    <ScrollView
-        android:layout_width="fill_parent"
-        android:layout_height="fill_parent"
-        android:layout_below="@+id/dashboard_toolbar">
+    <org.arguman.app.ui.view.ArgumanTextView
+        android:id="@+id/title"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:textSize="20sp"
+        android:textColor="#000"
+        android:gravity="center"
+        android:padding="10dp"
+        android:layout_below="@+id/dashboard_toolbar"
+        android:text="Argument Title" />
 
-        <RelativeLayout
-            android:layout_width="match_parent"
-            android:layout_height="match_parent">
-
-            <org.arguman.app.ui.view.ArgumanTextView
-                android:id="@+id/title"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:textSize="20sp"
-                android:textColor="#000"
-                android:gravity="center"
-                android:padding="10dp"
-                android:text="Argument Title" />
-
-        </RelativeLayout>
-
-    </ScrollView>
+    <ListView
+        android:id="@+id/premise_list"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_below="@id/title"/>
 
 </RelativeLayout>
