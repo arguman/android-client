@@ -36,7 +36,10 @@ import org.arguman.app.ui.adapter.DashboardPagerAdapter;
 import org.arguman.app.ui.adapter.SearchAdapter;
 import org.arguman.app.ui.view.SlidingTabLayout;
 
+import java.io.IOException;
+import java.net.HttpURLConnection;
 import java.net.InetAddress;
+import java.net.URL;
 import java.util.ArrayList;
 
 import retrofit.Callback;
@@ -64,6 +67,9 @@ public class Dashboard extends ActionBarActivity {
     private SearchManager searchManager;
     private SearchView searchView;
 
+    ConnectivityManager connectivityManager;
+    NetworkInfo networkInfo;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -79,12 +85,11 @@ public class Dashboard extends ActionBarActivity {
         progressDialog.setMessage(getString(R.string.loading));
         progressDialog.show();
 
+        connectivityManager = (ConnectivityManager) getSystemService(Context.CONNECTIVITY_SERVICE);
+        networkInfo = connectivityManager.getActiveNetworkInfo();
+
         if (!checkConnection()) {
             Toast.makeText(context, context.getResources().getString(R.string.no_network), Toast.LENGTH_LONG).show();
-            progressDialog.dismiss();
-            return;
-        } else if (!isInternetAvailable()) {
-            Toast.makeText(context, context.getResources().getString(R.string.no_connection), Toast.LENGTH_LONG).show();
             progressDialog.dismiss();
             return;
         }
@@ -115,24 +120,9 @@ public class Dashboard extends ActionBarActivity {
     }
 
     private boolean checkConnection() {
-        ConnectivityManager connectivityManager = (ConnectivityManager) getSystemService(Context.CONNECTIVITY_SERVICE);
-        NetworkInfo networkInfo = connectivityManager.getActiveNetworkInfo();
-        if (networkInfo == null) {
+        if (networkInfo == null)
             return false;
-        }
         return true;
-    }
-
-    private boolean isInternetAvailable() {
-        try {
-            InetAddress inetAddress = InetAddress.getByName("arguman.org");
-            if (inetAddress.equals("")) {
-                return false;
-            }
-            return true;
-        } catch (Exception e) {
-            return false;
-        }
     }
 
     private void getData() {
