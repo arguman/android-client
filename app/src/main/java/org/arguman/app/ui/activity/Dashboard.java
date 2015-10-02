@@ -1,9 +1,12 @@
 package org.arguman.app.ui.activity;
 
+import android.app.Activity;
 import android.app.ProgressDialog;
 import android.app.SearchManager;
 import android.content.Context;
 import android.database.MatrixCursor;
+import android.net.ConnectivityManager;
+import android.net.NetworkInfo;
 import android.os.Bundle;
 import android.support.v4.view.ViewPager;
 import android.support.v4.widget.SwipeRefreshLayout;
@@ -19,6 +22,7 @@ import android.view.MenuItem;
 import android.view.View;
 import android.widget.SearchView;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.getbase.floatingactionbutton.FloatingActionButton;
 import com.getbase.floatingactionbutton.FloatingActionsMenu;
@@ -32,6 +36,7 @@ import org.arguman.app.ui.adapter.DashboardPagerAdapter;
 import org.arguman.app.ui.adapter.SearchAdapter;
 import org.arguman.app.ui.view.SlidingTabLayout;
 
+import java.net.InetAddress;
 import java.util.ArrayList;
 
 import retrofit.Callback;
@@ -42,6 +47,8 @@ public class Dashboard extends ActionBarActivity {
 
     private static final String LOG_TAG = "Dashboard";
 
+    private Activity activity;
+    private Context context;
     private ViewPager viewPager;
     private DashboardPagerAdapter adapter;
     private SlidingTabLayout slidingTabLayout;
@@ -62,12 +69,25 @@ public class Dashboard extends ActionBarActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
+        activity = this;
+        context = this;
+
         Toolbar toolbar = (Toolbar) findViewById(R.id.dashboard_toolbar);
         setSupportActionBar(toolbar);
 
         progressDialog = new ProgressDialog(this);
         progressDialog.setMessage(getString(R.string.loading));
         progressDialog.show();
+
+        if (!checkConnection()) {
+            Toast.makeText(context, context.getResources().getString(R.string.no_network), Toast.LENGTH_LONG).show();
+            progressDialog.dismiss();
+            return;
+        } else if (!isInternetAvailable()) {
+            Toast.makeText(context, context.getResources().getString(R.string.no_connection), Toast.LENGTH_LONG).show();
+            progressDialog.dismiss();
+            return;
+        }
 
         getData();
 
@@ -92,6 +112,27 @@ public class Dashboard extends ActionBarActivity {
 */
         boolean loginState = UserController.getInstance(getApplicationContext()).getLoginState();
         setFabs(loginState);
+    }
+
+    private boolean checkConnection() {
+        ConnectivityManager connectivityManager = (ConnectivityManager) getSystemService(Context.CONNECTIVITY_SERVICE);
+        NetworkInfo networkInfo = connectivityManager.getActiveNetworkInfo();
+        if (networkInfo == null) {
+            return false;
+        }
+        return true;
+    }
+
+    private boolean isInternetAvailable() {
+        try {
+            InetAddress inetAddress = InetAddress.getByName("arguman.org");
+            if (inetAddress.equals("")) {
+                return false;
+            }
+            return true;
+        } catch (Exception e) {
+            return false;
+        }
     }
 
     private void getData() {

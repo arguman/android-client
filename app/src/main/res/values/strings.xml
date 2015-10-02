@@ -43,4 +43,7 @@
     <string name="premise_support">support</string>
     <string name="premise_send_premise">send premise</string>
 
+    <string name="no_network">Please connect to a network to use the app.</string>
+    <string name="no_connection">No access to arguman.org. Please try again later.</string>
+
 </resources>

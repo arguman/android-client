@@ -41,5 +41,8 @@
     <string name="premise_fallacy">safsata bildir</string>
     <string name="premise_support">destekle</string>
     <string name="premise_send_premise">önerme gönder</string>
-    
+
+    <string name="no_network">Uygulamayı kullanabilmek için lütfen bir ağa bağlanın.</string>
+    <string name="no_connection">arguman.org erişimi sağlanamadı. Lütfen tekrar deneyin.</string>
+
 </resources>
